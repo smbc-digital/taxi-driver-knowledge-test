@@ -1,0 +1,26 @@
+[
+	{
+		"number": 1,
+		"route": "/book-taxi-driver-knowledge-test/test-type"
+	},
+	{
+		"number": 2,
+		"route": "/book-taxi-driver-knowledge-test/first-time"
+	},
+	{
+		"number": 3,
+		"route": "/book-taxi-driver-knowledge-test/about-yourself"
+	},
+	{
+		"number": 4,
+		"route": "/book-taxi-driver-knowledge-test/choose-appointment"
+	},
+	{
+		"number": 5,
+		"route": "/book-taxi-driver-knowledge-test/payment-summary"
+	},
+	{
+		"number": 6,
+		"route": "/book-taxi-driver-knowledge-test/success"
+	}
+]
