@@ -1,42 +1,42 @@
 import { React, mount} from '../../../helpers/SetupTest'
-import { ExamplePage } from './index'
+import { TypeOfTest } from './index'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import renderer from 'react-test-renderer'
 
-describe('ExamplePage', () => {
+describe('TypeOfTest', () => {
     it('should call push on submit', () => {
         //Arrange
         const data = {
-            example: {
-                value: 'yes',
+            testType: {
+                value: 'Private hire',
                 isValid: true
             }
         }
 
         const history = { push: jest.fn() }
-		const wrapper = mount(<ExamplePage context={data} history={history} />)
+		const wrapper = mount(<TypeOfTest context={data} history={history} />)
 
         //Act
         wrapper.find('form').simulate('submit')
 
 
         //Assert
-        expect(history.push).toHaveBeenCalledWith(getPageRoute(1))
+        expect(history.push).toHaveBeenCalledWith(getPageRoute(2))
     })
 
     describe('snapshot', () => {
 		it('should render correctly',() => { 
 			// Arrange
 			const data = {
-                example: {
-                    value: 'yes',
+                testType: {
+                    value: 'Private hire',
                     isValid: true
                 }
 			}
 		
 			// Act
 			const tree = renderer
-			.create(<ExamplePage context={data} />)
+			.create(<TypeOfTest context={data} />)
 			.toJSON()
 		
 			// Assert
