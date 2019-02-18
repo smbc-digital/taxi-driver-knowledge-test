@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TypeOfTest snapshot should render correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <h1 />
+  <h2>
+    Which taxi driver knowledge test do you want to take?
+  </h2>
+  <fieldset>
+    <div
+      className="input-radio-container"
+    >
+      <input
+        checked={true}
+        disabled={undefined}
+        id="private"
+        name="testType"
+        onChange={[Function]}
+        type="radio"
+        value="Private hire"
+      />
+      <label
+        htmlFor="private"
+      >
+        Private hire
+      </label>
+    </div>
+    <div
+      className="input-radio-container"
+    >
+      <input
+        checked={undefined}
+        disabled={undefined}
+        id="hackney"
+        name="testType"
+        onChange={[Function]}
+        type="radio"
+        value="Hackney carriage"
+      />
+      <label
+        htmlFor="hackney"
+      >
+        Hackney carriage
+      </label>
+    </div>
+    <div
+      className="input-radio-container"
+    >
+      <input
+        checked={undefined}
+        disabled={undefined}
+        id="executive"
+        name="testType"
+        onChange={[Function]}
+        type="radio"
+        value="Executive hire"
+      />
+      <label
+        htmlFor="executive"
+      >
+        Executive hire
+      </label>
+    </div>
+    <div
+      className="input-radio-container"
+    >
+      <input
+        checked={undefined}
+        disabled={undefined}
+        id="assisted"
+        name="testType"
+        onChange={[Function]}
+        type="radio"
+        value="Assisted transport"
+      />
+      <label
+        htmlFor="assisted"
+      >
+        Assisted transport
+      </label>
+    </div>
+  </fieldset>
+  <button
+    className="button-primary"
+    disabled={false}
+    type="submit"
+  >
+    Next step
+  </button>
+</form>
+`;
