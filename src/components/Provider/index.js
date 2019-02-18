@@ -48,6 +48,13 @@ class Provider extends Component{
 		this.setState(copyOfState)
 	}
 
+	onFormSubmission = () => {
+		const copyOfState = Object.assign({}, this.state)
+		copyOfState.submittedFormSuccessfully = true
+		
+		this.setState(copyOfState)
+	}
+
 	render(){
 		return <Context.Provider value={ this.state }>{this.props.children}</Context.Provider>
 	}
