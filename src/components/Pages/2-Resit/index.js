@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
-import { RadioInputsContainer, AlertForm, DatePicker, Button, Anchor } from 'smbc-react-components'
+import { RadioInputsContainer, DatePicker, Button, Anchor } from 'smbc-react-components'
 import { getPageRoute } from '../../../helpers/pagehelper'
 
 export const Resit = props => {
@@ -22,14 +22,15 @@ export const Resit = props => {
 			renderIfChecked: () => (
                 context.isResit.value === 'true' &&
                 <DatePicker
-                    label='Select the date of your last test'
+					label='Select the date of your last test'
+					description='You will be able to choose a new test 4 weeks from this date'
                     id='previous-test-date'
                     enableH2={false}
                     name={'previousTestDate'}
                     value={context.previousTestDate.value}
 					onChange={context.onChange}
 					validationMessage={'Check the date and try again'}
-					dateCantBeInTheFuture={true}
+					isOutsideRange={context.isOutsideRange}
                 />
             )
             
@@ -37,6 +38,10 @@ export const Resit = props => {
     ]
 	
 	const onSubmit = (event) => {
+		if(context.isResit.value == 'false') {
+			context.previousTestDate.value = ''
+			context.previousTestDate.isValid = false
+		}
 		event.preventDefault()
 		history.push(getPageRoute(3))
 	}
@@ -46,10 +51,6 @@ export const Resit = props => {
 			<form onSubmit={onSubmit}>
 				<h1>{context.formHeader}</h1>
 				<h2>Is this the first time you&#39;ll be taking the taxi driver knowledge test?</h2>
-				<AlertForm
-					level='information'
-					content='If you&#39;ve failed the test before, you cannot retake the test for at least 4 weeks.'
-				/>
 				<RadioInputsContainer
 					onChange={context.onChange}
 					options={options}

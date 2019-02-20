@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Context } from '../../context/'
+import moment from 'moment'
 
 class Provider extends Component{
 	constructor(props){
@@ -40,7 +41,8 @@ class Provider extends Component{
 				isValid: ''
 			},
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
-			onChange: this.onChange
+			onChange: this.onChange,
+			isOutsideRange: this.isOutsideRange
 		}
 	}
 	
@@ -50,6 +52,14 @@ class Provider extends Component{
 		copyOfState[event.target.name].isValid = isValid
 
 		this.setState(copyOfState)
+	}
+
+	isOutsideRange = (date) => {
+		if (moment(date).isAfter(moment())) {
+			return true
+		} else {
+			return false
+		}
 	}
 
 	onFormSubmission = () => {
