@@ -11,7 +11,11 @@ class Provider extends Component{
 				value:'',
 				isValid: false
 			},
-			firstTime: {
+			isResit: {
+				value: '',
+				isValid: false
+			},
+			previousTestDate: {
 				value: '',
 				isValid: false
 			},
@@ -19,7 +23,7 @@ class Provider extends Component{
 				value: '',
 				isValid: ''
 			},
-			surname: {
+			lastName: {
 				value: '',
 				isValid: ''
 			},
