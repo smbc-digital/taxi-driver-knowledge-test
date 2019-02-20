@@ -11,9 +11,10 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
   <fieldset>
     <div
       className="input-radio-container"
+      role="radiogroup"
     >
       <input
-        checked={true}
+        defaultChecked={true}
         disabled={undefined}
         id="private"
         name="testType"
@@ -29,9 +30,10 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     </div>
     <div
       className="input-radio-container"
+      role="radiogroup"
     >
       <input
-        checked={undefined}
+        defaultChecked={false}
         disabled={undefined}
         id="hackney"
         name="testType"
@@ -47,9 +49,10 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     </div>
     <div
       className="input-radio-container"
+      role="radiogroup"
     >
       <input
-        checked={undefined}
+        defaultChecked={false}
         disabled={undefined}
         id="executive"
         name="testType"
@@ -65,9 +68,10 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     </div>
     <div
       className="input-radio-container"
+      role="radiogroup"
     >
       <input
-        checked={undefined}
+        defaultChecked={false}
         disabled={undefined}
         id="assisted"
         name="testType"
@@ -85,6 +89,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
   <button
     className="button-primary"
     disabled={false}
+    id={undefined}
     type="submit"
   >
     Next step
