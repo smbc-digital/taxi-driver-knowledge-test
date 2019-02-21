@@ -1,7 +1,7 @@
 {
-	"name": "boilerplate",
+	"name": "taxi-driver-knowledge-test",
 	"version": "1.0.0",
-	"description": "Boilerplate for all react forms",
+	"description": "taxi-driver-knowledge-test-form",
 	"main": "index.js",
 	"scripts": {
 		"test": "jest",
