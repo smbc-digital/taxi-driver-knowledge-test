@@ -58,6 +58,7 @@ export const AboutYourself = props => {
                     enableHeading={false}
                     shouldDisplayManualSearch={false}
                     showManualOption={true}
+                    manualLabel='Enter your address'
                     onChange={context.onChange}
                 />
                 <Button 
