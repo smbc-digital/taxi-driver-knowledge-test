@@ -93,6 +93,12 @@ Array [
       type="email"
       value="Value"
     />
+    <h3
+      aria-hidden="true"
+      className={undefined}
+    >
+      Enter your address
+    </h3>
     <label
       className=""
       htmlFor="addressLine1"
