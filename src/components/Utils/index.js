@@ -1,6 +1,15 @@
 import 'isomorphic-fetch'
 import Timeout from 'await-timeout'
 import sanitizeHtml from 'sanitize-html'
+// import moment = require('moment');
+
+// async function getAvailableAppointment(context) {
+//     const fromDate = 
+//     const request = {
+//         from: context.previousTestDate == '' ? moment() : context.previousTestDate.add(4, 'weeks'),
+//         to: 
+//     }
+// }
 
 async function submitForm(context) {
     const convertedContext = {}
