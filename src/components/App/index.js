@@ -7,6 +7,7 @@ import Resit from '../Pages/2-Resit'
 import AboutYourself from '../Pages/3-AboutYourself'
 import SelectAppointment from '../Pages/4-SelectAppointment'
 import PaymentSummary from '../Pages/5-PaymentSummary'
+import Success from '../Pages/6-Success'
 
 class App extends Component {
     render() {
@@ -17,6 +18,7 @@ class App extends Component {
                 <Route exact path={getPageRoute(3)} component={ AboutYourself }/>
                 <Route exact path={getPageRoute(4)} component={ SelectAppointment } />
                 <Route exact path={getPageRoute(5)} component={ PaymentSummary }/>
+                <Route exact path={getPageRoute(6)} component={ Success }/>
                 <Route exact path="/error" component={ ErrorPage } />
             </Switch>
         )

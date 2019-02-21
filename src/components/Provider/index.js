@@ -40,6 +40,7 @@ class Provider extends Component{
 				value: '',
 				isValid: ''
 			},
+			// paymentReference: '',
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
 			onChange: this.onChange,
 			isOutsideRange: this.isOutsideRange
@@ -64,6 +65,13 @@ class Provider extends Component{
 		
 		this.setState(copyOfState)
 	}
+
+	// onFormSubmission = (paymentReference) => {
+	// 	const copyOfState = Object.assign({}, this.state)
+	// 	copyOfState.paymentReference = paymentReference
+		
+	// 	this.setState(copyOfState)
+	// }
 
 	render(){
 		return <Context.Provider value={ this.state }>{this.props.children}</Context.Provider>
