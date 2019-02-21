@@ -55,11 +55,7 @@ class Provider extends Component{
 	}
 
 	isOutsideRange = (date) => {
-		if (moment(date).isAfter(moment())) {
-			return true
-		} else {
-			return false
-		}
+		return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
 	}
 
 	onFormSubmission = () => {
