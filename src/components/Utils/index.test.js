@@ -1,4 +1,4 @@
-import submitForm from './index'
+import { submitForm } from './index'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
