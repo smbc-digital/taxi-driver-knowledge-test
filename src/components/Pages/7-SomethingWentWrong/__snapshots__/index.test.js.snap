@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SomethingWentWrong snapshot should render correctly 1`] = `
+<div
+  className="system-failure"
+>
+  <h1>
+    We're sorry, the payment was unsuccessful
+  </h1>
+  <div
+    className="icon"
+  >
+    <span
+      aria-hidden="true"
+      className="fa fa-5x fa-exclamation"
+    />
+  </div>
+  <h2 />
+  <p>
+    Something went wrong. Please try again if you want to continue with the order.
+  </p>
+  <p>
+    <a
+      className="button-primary no-margin-bottom"
+      href="/"
+    >
+      Continue with the order
+    </a>
+  </p>
+  <p>
+    <a
+      className="button-secondary no-margin-bottom"
+      href="https://www.stockport.gov.uk"
+    >
+      Go to the homepage
+    </a>
+  </p>
+</div>
+`;
