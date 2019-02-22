@@ -21,7 +21,7 @@ export class Success extends Component {
 			<Fragment>
 				<section className="header-container">
 					<h1>Booking complete</h1>
-					<p className="h2">Thanks you for booking to take the taxi driver knowledge test</p>
+					<p className="h2">Thank you for booking to take the taxi driver knowledge test</p>
 					<p>
 						<strong>Your payment reference: {paymentReference}</strong>
 					</p>
@@ -45,7 +45,9 @@ export class Success extends Component {
 							<li>Passport or other suitable evidence of your right to work in the UK</li>
 							<li>Photocard DVLA driving licence showing your current address</li>
 						</ul>
-					<p><strong>Manage your test online</strong></p>
+					<p>
+                        <strong>Manage your test online</strong>
+                    </p>
                     <p>You can change your test date and time online up until midday the day before by using My Account.</p>
 					<p>
 						<a className="button-primary" href="https://myaccount.stockport.gov.uk/">
