@@ -23,7 +23,7 @@ export const Resit = props => {
                 context.isResit.value === 'true' &&
                 <DatePicker
 					label='Select the date of your last test'
-					description='Yo&#39;ll be able to choose a new test 4 weeks from this date'
+					description='You&#39;ll be able to choose a new test 4 weeks from this date'
                     id='previous-test-date'
                     enableH2={false}
                     name={'previousTestDate'}

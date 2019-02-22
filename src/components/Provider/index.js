@@ -40,6 +40,7 @@ class Provider extends Component{
 				value: '',
 				isValid: ''
 			},
+			appointments: [],
 			paymentReference: '',
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
 			onChange: this.onChange,

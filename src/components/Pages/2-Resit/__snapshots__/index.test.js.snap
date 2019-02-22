@@ -63,7 +63,7 @@ Array [
           <p
             className="description"
           >
-            Yo'll be able to choose a new test 4 weeks from this date
+            You'll be able to choose a new test 4 weeks from this date
           </p>
           <div
             className="SingleDatePicker SingleDatePicker_1"
