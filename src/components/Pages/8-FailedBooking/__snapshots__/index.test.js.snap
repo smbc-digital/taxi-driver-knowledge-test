@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FailedBooking snapshot should render correctly 1`] = `
+<div
+  className="system-failure"
+>
+  <h1>
+    Sorry, something went wrong
+  </h1>
+  <div
+    className="icon"
+  >
+    <span
+      aria-hidden="true"
+      className="fa fa-5x fa-exclamation"
+    />
+  </div>
+  <h2 />
+  <p>
+    We're sorry, something went wrong and we may have taken the money from your account but not ordered your test. Please ring the contact centre and give them your details to make sure your order is complete.
+  </p>
+  <p>
+    <a
+      className="button-primary no-margin-bottom"
+      href="https://www.stockport.gov.uk/"
+    >
+      Go back to the hompage
+    </a>
+  </p>
+</div>
+`;

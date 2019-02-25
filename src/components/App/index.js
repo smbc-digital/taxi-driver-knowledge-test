@@ -9,6 +9,7 @@ import SelectAppointment from '../Pages/4-SelectAppointment'
 import PaymentSummary from '../Pages/5-PaymentSummary'
 import Success from '../Pages/6-Success'
 import SomethingWentWrong from '../Pages/7-SomethingWentWrong'
+import FailedBooking from '../Pages/8-FailedBooking'
 
 class App extends Component {
     render() {
@@ -21,6 +22,7 @@ class App extends Component {
                 <Route exact path={getPageRoute(5)} component={ PaymentSummary }/>
                 <Route exact path={getPageRoute(6)} component={ Success }/>
                 <Route exact path={getPageRoute(7)} component={ SomethingWentWrong }/>
+                <Route exact path={getPageRoute(8)} component={ FailedBooking }/>
                 <Route exact path="/error" component={ ErrorPage } />
             </Switch>
         )

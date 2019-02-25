@@ -26,5 +26,9 @@
 	{
 		"number": 7,
 		"route": "/book-taxi-driver-knowledge-test/something-went-wrong"
+	},
+	{
+		"number": 8,
+		"route": "/book-taxi-driver-knowledge-test/failed-booking"
 	}
 ]
