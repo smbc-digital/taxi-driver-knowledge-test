@@ -12,55 +12,92 @@ export class SelectAppointment extends Component {
 		props.context
 
 		this.state = {
-			appointments: []
+			appointments: [],
+			twelveWeekAppointments: [],
+			eighteenWeekAppointments: [],
+			showMore: true
 		}
 	}
 
 	componentDidMount = async () => {
 		const result = await getAvailableAppointments(this.props.context)
+		const appointments = result.appointments
+		const twelveWeeksResult = this.getTwelveWeeksAppointments(appointments)
 		const formattedResult = this.formatAppointments(result.appointments)
 		const copyOfState = Object.assign({}, this.state)
-		copyOfState.appointments = formattedResult
+		copyOfState.appointments = twelveWeeksResult
+		copyOfState.twelveWeekAppointments = twelveWeeksResult
+		copyOfState.eighteenWeekAppointments = formattedResult
 		this.setState(copyOfState)
 	}
 
-	formatAppointments = (appointments) => {
-		for(let i = 0; i < appointments.length; i++) {
+	formatAppointments = appointments => {
+		for (let i = 0; i < appointments.length; i++) {
 			appointments[i].date = moment(appointments[i].date, 'DD/MM/YYYY', true).format('dddd D MMMM YYYY')
-			for(let j = 0; j < appointments[i].times.length; j++) {
-				appointments[i].times[j].startTime = moment(appointments[i].times[j].startTime, 'HH:mm:ss', true).format('H:mma')
+			for (let j = 0; j < appointments[i].times.length; j++) {
+				appointments[i].times[j].startTime = moment(
+					appointments[i].times[j].startTime,
+					'HH:mm:ss',
+					true
+				).format('H:mma')
 			}
 		}
 
 		return appointments
 	}
 
-	onSubmit = (event) => {
-        event.preventDefault()
-        history.push(getPageRoute(5))
+	getTwelveWeeksAppointments = appointments => {
+		let twelveWeeks = []
+		const base = moment(appointments[0].date, 'DD/MM/YYYY', true).format()
+		const twelveWeekLimit = moment(base)
+			.add(12, 'weeks')
+			.format()
+		for (let i = 0; i < appointments.length; i++) {
+			const appointmentB = appointments[i]
+			const baseAppointmentDate = moment(appointments[i].date, 'DD/MM/YYYY', true).format()
+			if (baseAppointmentDate < twelveWeekLimit) {
+				twelveWeeks.push(appointmentB)
+			}
+		}
+
+		return twelveWeeks
+	}
+
+	onSubmit = event => {
+		event.preventDefault()
+		this.props.history.push(getPageRoute(5))
+	}
+
+	onClick = event => {
+		event.preventDefault()
+		const copyOfState = Object.assign({}, this.state)
+		copyOfState.appointments = copyOfState.eighteenWeekAppointments
+		copyOfState.showMore = false
+		this.setState(copyOfState)
 	}
 
 	render() {
 		const { formHeader } = this.props.context
-		return(
+		return (
 			<Fragment>
 				<form onSubmit={this.onSubmit}>
 					<h1>{formHeader}</h1>
 					<AlertForm
-							level="information"
-							content="The test usually takes place on a Wednesday. There may be times when we run the test on other days, these will be displayed below."
-						/>
-					<SelectableButtonList 
-							heading='Select an appointment' 
-							enableH2={true} 
-							buttonList={this.state.appointments} 
-							colour='inverted' 
-							inline={true} 
-							showMore={true} 
-						/>
+						level="information"
+						content="The test usually takes place on a Wednesday. There may be times when we run the test on other days, these will be displayed below."
+					/>
+					<SelectableButtonList
+						heading="Select an appointment"
+						enableH2={true}
+						buttonList={this.state.appointments}
+						colour="radio-list"
+						inline={true}
+						showMore={this.state.showMore}
+						onClick={this.onClick}
+					/>
 					<Button isValid={true} label="Next step" />
 				</form>
-				<Anchor label='Back' history={history} />
+				<Anchor label="Back" history={history} />
 			</Fragment>
 		)
 	}

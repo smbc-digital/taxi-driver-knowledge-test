@@ -41,6 +41,8 @@ class Provider extends Component{
 				isValid: ''
 			},
 			appointments: [],
+			twelveWeekAppointments: [],
+			eighteenWeekAppointments: [],
 			paymentReference: '',
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
 			onChange: this.onChange,

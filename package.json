@@ -17,14 +17,14 @@
 	"dependencies": {
 		"await-timeout": "^0.2.0",
 		"isomorphic-fetch": "^2.2.1",
-		"moment": "^2.22.2",
+		"moment": "^2.24.0",
 		"react": "^16.6.1",
 		"react-async-script": "^0.9.1",
 		"react-dom": "^16.6.1",
 		"react-google-recaptcha": "^0.12.0",
 		"react-router": "^4.3.1",
 		"sanitize-html": "^1.20.0",
-		"smbc-react-components": "^4.1.61"
+		"smbc-react-components": "^4.1.63"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",

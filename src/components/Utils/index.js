@@ -4,10 +4,11 @@ import sanitizeHtml from 'sanitize-html'
 import moment from 'moment'
 
 export async function getAvailableAppointments(context) {
-    const fromDate = context.isResit.value == 'false' ? moment() : moment(context.previousTestDate.value).add(4, 'weeks')
+	const fromDate = context.isResit.value == 'false' ? moment() : moment(context.previousTestDate.value).add(4, 'weeks')
+	const x = fromDate < moment() ? moment() : fromDate
 	const request = {
-		from: fromDate,
-		to: moment(fromDate).add(18, 'weeks'),
+		from: x,
+		to: moment(x).add(18, 'weeks'),
 		isResit: context.isResit.value == 'true'
 	}
 
