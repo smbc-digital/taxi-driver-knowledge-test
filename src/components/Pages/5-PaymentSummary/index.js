@@ -2,7 +2,7 @@ import 'isomorphic-fetch'
 import React, { Component } from 'react'
 import { Button, Anchor } from 'smbc-react-components'
 import PropTypes from 'prop-types'
-import SubmitUtil from '../../Utils' 
+import { getPaymentUrl } from '../../Utils' 
 import { getPageRoute } from '../../../helpers/pagehelper'
 import withContext from '../../WithContext'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -27,7 +27,7 @@ export class PaymentSummary extends Component {
         const { context, history } = this.props
         
         this.setState({ isLoading: true })
-        let rawResponse = await SubmitUtil(context)
+        let rawResponse = await getPaymentUrl(context.bookingId, context.testDate)
         if(rawResponse.status === 200){
             window.location.assign(rawResponse.url)
         } else{

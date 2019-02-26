@@ -8,6 +8,8 @@ class Provider extends Component{
 		super(props)
 		this.state = {
 			formHeader: 'Book your taxi driver knowledge test',
+			bookingId: '',
+			testDate: '',
 			testType: {
 				value:'',
 				isValid: false
@@ -40,11 +42,7 @@ class Provider extends Component{
 				value: '',
 				isValid: ''
 			},
-			appointments: [],
-			twelveWeekAppointments: [],
-			eighteenWeekAppointments: [],
-			paymentReference: '',
-			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
+			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' : false,
 			onChange: this.onChange,
 			isOutsideRange: this.isOutsideRange
 		}
