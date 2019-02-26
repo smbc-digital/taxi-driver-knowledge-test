@@ -17,14 +17,14 @@ exports[`SomethingWentWrong snapshot should render correctly 1`] = `
   </div>
   <h2 />
   <p>
-    Something went wrong. Please try again if you want to continue with the order.
+    Please try again if you want to continue with the booking.
   </p>
   <p>
     <a
       className="button-primary no-margin-bottom"
-      href="/"
+      href={undefined}
     >
-      Continue with the order
+      Continue with the booking
     </a>
   </p>
   <p>

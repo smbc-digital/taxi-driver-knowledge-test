@@ -7,10 +7,13 @@ describe('SomethingWentWrong', () => {
 		it('should render correctly',() => { 
 			// Arrange
 			const history = { block: jest.fn() }
+			const location = {search: {
+
+			}}
 
 			// Act
 			const tree = renderer
-			.create(<SomethingWentWrong history={history} />)
+			.create(<SomethingWentWrong history={history} location={location} />)
 			.toJSON()
 		
 			// Assert
