@@ -102,6 +102,8 @@ export class SelectAppointment extends Component {
 						showMore={this.state.showMore}
 						onClick={this.onClick}
 					/>
+					{this.state.appointments.length == 0 && 
+					<div className='page-loading-spinner'></div>}
 					<Button isValid={false} label="Next step" />
 				</form>
 				<Anchor label="Back" history={history} />
