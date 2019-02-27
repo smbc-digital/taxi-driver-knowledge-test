@@ -16,6 +16,7 @@ export class SelectAppointment extends Component {
 			twelveWeekAppointments: [],
 			eighteenWeekAppointments: [],
 			selectedAppointment:{},
+			isSelectedAppointment: false,
 			showMore: true
 		}
 	}
@@ -80,6 +81,9 @@ export class SelectAppointment extends Component {
 	onButtonClick = (event, item) => {
 		event.preventDefault()
 		this.props.context.selectedAppointment = item
+		const copyOfState = Object.assign({}, this.state)
+		copyOfState.isSelectedAppointment = true
+		this.setState(copyOfState)
 	}
 
 	render() {
@@ -102,7 +106,7 @@ export class SelectAppointment extends Component {
 						showMore={this.state.showMore}
 						onClick={this.onClick}
 					/>
-					<Button isValid={false} label="Next step" />
+					<Button isValid={this.state.isSelectedAppointment} label="Next step" />
 				</form>
 				<Anchor label="Back" history={history} />
 			</Fragment>
