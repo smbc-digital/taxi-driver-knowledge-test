@@ -10,6 +10,72 @@ describe('getPaymentUrl', () => {
 		fetch.resetMocks()
     })
 
+    it('should call frontend with sanitized context', async () => {
+
+        let expectedResult = {status: 200}
+
+        const expectedContext = {
+            firstName : 'test first name',
+			lastName : 'test last name'
+        }
+
+        let data = {
+            firstName : {
+				value: 'test first name',
+				isValid: false
+			},
+			lastName : {
+				value: 'test last name',
+				isValid: false
+			}
+        }
+
+        let expectedFetch = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json; charset=utf-8',
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(expectedContext)
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(submitForm(data))
+        expect(fetch).toHaveBeenCalledWith(expect.anything(), expectedFetch)
+    })
+
+    it('should remove undefined from sanitized context', async () => {
+
+        let expectedResult = {status: 200}
+
+        const expectedContext = {
+            firstName : 'test'
+        }
+
+        let data = {
+            firstName : {
+				value: 'test',
+				isValid: false
+			},
+            undefined
+        }
+        
+        let expectedFetch = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json; charset=utf-8',
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(expectedContext)
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(submitForm(data))
+        expect(fetch).toHaveBeenCalledWith(expect.anything(), expectedFetch)
+    })
+    
     it('should call frontend', async () => {
 
         let expectedResult = {status: 200}
@@ -25,5 +91,95 @@ describe('getPaymentUrl', () => {
 
         await expect(getPaymentUrl(data))
         expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/generate-payment-url', expect.anything())
+    })
+
+    it('should remove script from content when submitting to frontend', async () => {
+
+        let expectedResult = {status: 200}
+
+        const expectedContext = {
+            firstName : 'shdshdshtextetxetxtexte more text helpim stuckinahere',
+            lastName: 'valid'
+        }
+
+        let data = {
+            firstName : {
+				value: 'shdshdshtextetxetxtexte more text<script>alert(\'alert\')</script> helpim stuckinahere',
+				isValid: true
+            },
+            lastName: {
+                value: 'valid',
+				isValid: true
+            }
+        }
+        
+        let expectedFetch = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json; charset=utf-8',
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(expectedContext)
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(submitForm(data))
+        expect(fetch).toHaveBeenCalledWith(expect.anything(), expectedFetch)
+    })
+
+    it('should remove html tag from content when submitting to frontend', async () => {
+
+        let expectedResult = {status: 200}
+
+        const expectedContext = {
+            firstName: 'valid',
+            lastName: 'valid'
+        }
+
+        let data = {
+            firstName: {
+                value: '<p>valid</p>',
+				isValid: true
+            },
+            lastName: {
+                value: 'valid',
+				isValid: true
+            }
+        }
+        
+        let expectedFetch = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json; charset=utf-8',
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(expectedContext)
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(submitForm(data))
+        expect(fetch).toHaveBeenCalledWith(expect.anything(), expectedFetch)
+    })
+
+    it('getAvailableAppointments should call frontend', async () => {
+        let expectedResult = {status: 200}
+
+        let data = {
+            isResit: {
+				value: 'false',
+				isValid: false
+            },
+            previousTestDate: {
+				value: '26/02/2019',
+				isValid: false
+			},
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(getAvailableAppointments(data))
+        expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/available-appointments', expect.anything())
     })
 })

@@ -269,52 +269,38 @@ describe('SelectAppointment', () => {
 	// 		]
 	// 	}
 
-	// 	const expectedData = [
-	// 		{
-	// 			date: 'Wednesday 27 February 2019',
-	// 			times: [
-	// 				{
-	// 					startTime: '8:45am',
-	// 					endTime: '11:00:00'
-	// 				},
-	// 				{
-	// 					startTime: '12:45pm',
-	// 					endTime: '15:00:00'
-	// 				}
-	// 			]
-	// 		},
-	// 		{
-	// 			date: 'Wednesday 6 March 2019',
-	// 			times: [
-	// 				{
-	// 					startTime: '8:45am',
-	// 					endTime: '11:00:00'
-	// 				}
-	// 			]
-	// 		},
-	// 		{
-	// 			date: 'Wednesday 13 March 2019',
-	// 			times: [
-	// 				{
-	// 					startTime: '8:45am',
-	// 					endTime: '11:00:00'
-	// 				},
-	// 				{
-	// 					startTime: '12:45pm',
-	// 					endTime: '15:00:00'
-	// 				}
-	// 			]
-	// 		}
-	// 	]
-
-	// 	const history = { push: jest.fn() }
-	// 	const event = { preventDefault: jest.fn() }
-	// 	const wrapper = mount(<SelectAppointment context={data} history={history} />)
+		const history = { push: jest.fn() }
+		const event = { preventDefault: jest.fn() }
+		const wrapper = mount(<SelectAppointment context={data} history={history} />)
 
 	// 	//Act
 	// 	wrapper.instance().onClick(event)
 
-	// 	//Assert
-	// 	expect(wrapper.state().showMore).toEqual(false)
-	// })
+		//Assert
+		expect(wrapper.state().showMore).toEqual(false)
+	})
+
+	it('on componentDidMount did update state', async () => {
+		const data = {
+			isResit: {
+				value: 'false',
+				isValid: false
+            },
+            previousTestDate: {
+				value: '26/02/2019',
+				isValid: false
+			},
+			appointments: [],
+			eighteenWeekAppointments: [],
+			twelveWeekAppointments : []
+		}
+
+		const history = { push: jest.fn() }
+		const wrapper = mount(<SelectAppointment context={data} history={history} />)
+
+		//Act
+		wrapper.instance().componentDidMount()
+
+		expect(wrapper.state().appointments).toEqual([])
+	})
 })
