@@ -90,6 +90,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     className="button-primary"
     disabled={false}
     id={undefined}
+    onClick={undefined}
     type="submit"
   >
     Next step

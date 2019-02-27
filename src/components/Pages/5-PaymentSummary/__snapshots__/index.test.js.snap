@@ -21,6 +21,7 @@ exports[`PaymentSummary snapshot renders correctly 1`] = `
     className="button-primary"
     disabled={false}
     id="continue-to-payment"
+    onClick={undefined}
     type="submit"
   >
     Continue to payment

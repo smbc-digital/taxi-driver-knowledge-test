@@ -15,9 +15,7 @@ exports[`FailedBooking snapshot should render correctly 1`] = `
       className="fa fa-5x fa-exclamation"
     />
   </div>
-  <h2>
-    We're sorry, something went wrong and we may have taken the money from your account but not ordered your test.
-  </h2>
+  <h2 />
   <p>
     We're sorry, something went wrong. We may have taken the money from your account but not booked your test.
   </p>

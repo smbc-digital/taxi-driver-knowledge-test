@@ -110,6 +110,7 @@ Array [
       className="button-primary"
       disabled={true}
       id={undefined}
+      onClick={undefined}
       type="submit"
     >
       Next step
