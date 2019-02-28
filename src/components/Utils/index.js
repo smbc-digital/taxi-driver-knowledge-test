@@ -2,11 +2,11 @@ import 'isomorphic-fetch'
 import moment from 'moment'
 
 export const getAvailableAppointments = async context => {
-	const fromDate = context.isResit.value == 'false' ? moment() : moment(context.previousTestDate.value).add(4, 'weeks')
-	const x = fromDate < moment() ? moment() : fromDate
+	const earliestNewTestDate = context.isResit.value == 'false' ? moment() : moment(context.previousTestDate.value).add(4, 'weeks')
+	const dateToSearchFrom = earliestNewTestDate < moment() ? moment() : earliestNewTestDate
 	const request = {
-		from: x,
-		to: moment(x).add(18, 'weeks'),
+		from: dateToSearchFrom,
+		to: moment(dateToSearchFrom).add(18, 'weeks'),
 		isResit: context.isResit.value == 'true'
 	}
 
