@@ -37,12 +37,12 @@ export class PaymentSummary extends Component {
 
 render() {
     const { isLoading, recaptchaValid } = this.state
-    const { context : {displayRecaptcha, formHeader }, history } = this.props
+    const { context : {displayRecaptcha, formHeader, selectedAppointment }, history } = this.props
     return ( 
         <form onSubmit={this.onSubmit}>
             <h1>{formHeader}</h1>
             <h2>Your booking summary</h2>
-            <p>Your booking to take the taxi driver knowledge test is at 8:45am on Wednesday 23 January.</p>
+            <p>Your booking to take the taxi driver knowledge test is at {selectedAppointment.times.startTime} on {selectedAppointment.date}.</p>
             <p>You&#39;ll now be taken to our online system to make the payment.</p>
             <p>The cost is £70.</p>
             {displayRecaptcha && (

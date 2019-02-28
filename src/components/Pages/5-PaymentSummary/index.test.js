@@ -16,7 +16,15 @@ describe('PaymentSummary', () => {
 	it('should call push on submit with the correct next page url when response is 200', async () => {
 		// Arrange
 		const url = 'http://www.test.url/paymentTest'
-		const data = { testDate: '26/02/2019' }
+		const data = {
+			testDate: '26/02/2019',
+			selectedAppointment:{
+				date: 'test',
+				times:{
+					startTime: 'asd'
+				}
+			}
+		}
 		const history = { push: jest.fn() }
 		window.location.assign = jest.fn()
 		submitUtils.getPaymentUrl = jest.fn().mockReturnValue({ status: 200, url: url })
@@ -33,7 +41,14 @@ describe('PaymentSummary', () => {
 	it('should call push on submit with an error page when reponse is not 200', async () => {
 		// Arrange
 		const url = 'http://www.test.url/paymentTest'
-		const data = {}
+		const data = {
+			selectedAppointment:{
+				date: 'test',
+				times:{
+					startTime: 'asd'
+				}
+			}
+		}
 		const history = { push: jest.fn() }
 		window.location.assign = jest.fn()
 		submitUtils.getPaymentUrl = jest.fn().mockReturnValue({ status: 400, url: url })
@@ -51,7 +66,13 @@ describe('PaymentSummary', () => {
 		// Arrange
 		document.body.innerHTML = '<span id="displayRecaptcha" class="hidden">true</span>'
 		const data = {
-			displayRecaptcha: true
+			displayRecaptcha: true,
+			selectedAppointment:{
+				date: 'test',
+				times:{
+					startTime: 'asd'
+				}
+			}
 		}
 
 		let history = { push: jest.fn() }
@@ -68,7 +89,13 @@ describe('PaymentSummary', () => {
 		// Arrange
 		document.body.innerHTML = '<span id="displayRecaptcha" class="hidden">true</span>'
 		const data = {
-			displayRecaptcha: true
+			displayRecaptcha: true,
+			selectedAppointment:{
+				date: 'test',
+				times:{
+					startTime: 'asd'
+				}
+			}
 		}
 
 		let history = { push: jest.fn() }
@@ -85,7 +112,13 @@ describe('PaymentSummary', () => {
 		// Arrange
 		document.body.innerHTML = '<span id="displayRecaptcha" class="hidden">true</span>'
 		const data = {
-			displayRecaptcha: true
+			displayRecaptcha: true,
+			selectedAppointment:{
+				date: 'test',
+				times:{
+					startTime: 'asd'
+				}
+			}
 		}
 
 		let history = { push: jest.fn() }
@@ -108,6 +141,12 @@ describe('PaymentSummary', () => {
 				whyMoreSpaceOther: {
 					value: '',
 					isValid: false
+				},
+				selectedAppointment:{
+					date: 'test',
+					times:{
+						startTime: 'asd'
+					}
 				}
 			}
 

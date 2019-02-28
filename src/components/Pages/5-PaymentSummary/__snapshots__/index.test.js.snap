@@ -9,7 +9,11 @@ exports[`PaymentSummary snapshot renders correctly 1`] = `
     Your booking summary
   </h2>
   <p>
-    Your booking to take the taxi driver knowledge test is at 8:45am on Wednesday 23 January.
+    Your booking to take the taxi driver knowledge test is at 
+    asd
+     on 
+    test
+    .
   </p>
   <p>
     You'll now be taken to our online system to make the payment.
