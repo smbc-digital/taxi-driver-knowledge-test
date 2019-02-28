@@ -33,6 +33,42 @@ export const getAvailableAppointments = async context => {
 	}
 }
 
+export const reserveAppointment = async (isResit, selectedAppointment) => {
+	const date = moment(selectedAppointment.date, 'dddd D MMMM YYYY', true).format('DD/MM/YYYY')
+	console.log(selectedAppointment)
+	console.log(selectedAppointment.times.startTime)
+	const time = moment(selectedAppointment.times.endTime, 'H:mma', true).format('HH:mm:ss')
+	const appointmentDateTime = moment(date + ' ' + time, 'DD/MM/YYYY HH:mm:ss')
+	console.log(date)
+	console.log(time)
+	console.log(appointmentDateTime)
+
+	try {
+		const result = await fetch('/book-taxi-driver-knowledge-test/pencil-an-appointment', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json; charset=utf-8',
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			body: JSON.stringify({
+				appointmentDateTime, isResit
+			})
+		})
+
+		const responseObject = await result.json()
+
+		return {
+			status: result.status,
+			bookingId: responseObject,
+			testDate: appointmentDateTime
+		}
+	} catch (error) {
+		return {
+			status: 500
+		}
+	}
+}
+
 export const getPaymentUrl = async (bookingId, testDate) => {
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/generate-payment-url', {

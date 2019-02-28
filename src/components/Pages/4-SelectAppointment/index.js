@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import { AlertForm, SelectableButtonList, Button, Anchor } from 'smbc-react-components'
-import { getAvailableAppointments } from '../../Utils'
+import { getAvailableAppointments, reserveAppointment } from '../../Utils'
 import moment from 'moment'
 
 export class SelectAppointment extends Component {
@@ -17,57 +17,66 @@ export class SelectAppointment extends Component {
 			eighteenWeekAppointments: [],
 			selectedAppointment:{},
 			isSelectedAppointment: false,
-			showMore: true
+			showMore: true,
+			isLoading: false
 		}
 	}
 
 	componentDidMount = async () => {
 		const result = await getAvailableAppointments(this.props.context)
 		const appointments = result.appointments
-		const twelveWeeksResult = this.getTwelveWeeksAppointments(appointments)
-		const formattedResult = this.formatAppointments(result.appointments)
 		const copyOfState = Object.assign({}, this.state)
-		copyOfState.appointments = twelveWeeksResult
-		copyOfState.twelveWeekAppointments = twelveWeeksResult
-		copyOfState.eighteenWeekAppointments = formattedResult
+		copyOfState.eighteenWeekAppointments = appointments
 		this.setState(copyOfState)
+		// this.getTwelveWeeksAppointments()
 	}
 
-	formatAppointments = appointments => {
-		for (let i = 0; i < appointments.length; i++) {
-			appointments[i].date = moment(appointments[i].date, 'DD/MM/YYYY', true).format('dddd D MMMM YYYY')
-			for (let j = 0; j < appointments[i].times.length; j++) {
-				appointments[i].times[j].startTime = moment(
-					appointments[i].times[j].startTime,
-					'HH:mm:ss',
-					true
-				).format('H:mma')
-			}
-		}
-
-		return appointments
-	}
-
-	getTwelveWeeksAppointments = appointments => {
+	getTwelveWeeksAppointments = () => {
 		let twelveWeeks = []
-		const base = moment(appointments[0].date, 'DD/MM/YYYY', true).format()
+		let formattedTwelveWeeks = []
+		let eighteenWeeks = Object.assign({}, this.state.eighteenWeekAppointments)
+		const base = moment(eighteenWeeks[0].date, 'dddd D MMMM YYYY', true).format()
+		
 		const twelveWeekLimit = moment(base)
 			.add(12, 'weeks')
 			.format()
-		for (let i = 0; i < appointments.length; i++) {
-			const appointmentB = appointments[i]
-			const baseAppointmentDate = moment(appointments[i].date, 'DD/MM/YYYY', true).format()
+		console.log(twelveWeekLimit)
+
+		for (let i = 0; i < eighteenWeeks.length; i++) {
+			const appointmentB = eighteenWeeks[i]
+			const baseAppointmentDate = moment(eighteenWeeks[i].date, 'dddd D MMMM YYYY', true).format()
+			console.log(baseAppointmentDate)
 			if (baseAppointmentDate < twelveWeekLimit) {
 				twelveWeeks.push(appointmentB)
 			}
 		}
 
-		return twelveWeeks
+		for (let i = 0; i < twelveWeeks.length; i++) {
+			formattedTwelveWeeks.push(this.state.eighteenWeekAppointments[i])
+		}
+
+		this.setState({
+			appointments: formattedTwelveWeeks,
+			twelveWeekAppointments: formattedTwelveWeeks
+		})
 	}
 
-	onSubmit = event => {
+	onSubmit = async(event) => {
 		event.preventDefault()
-		this.props.history.push(getPageRoute(5))
+		const { context, history } = this.props
+		
+		this.setState({ isLoading: true })
+		let result = await reserveAppointment(context.isResit, this.state.selectedAppointment)
+		const copyOfState = Object.assign({}, this.state)
+		copyOfState.testDate = result.testDate
+		copyOfState.bookingId = result.bookingId
+		this.setState(copyOfState)
+
+        if(result.status === 200){
+            history.push(getPageRoute(5))
+        } else{
+            history.push(getPageRoute(7))
+        }
 	}
 
 	onClick = event => {
@@ -83,11 +92,12 @@ export class SelectAppointment extends Component {
 		this.props.context.selectedAppointment = item
 		const copyOfState = Object.assign({}, this.state)
 		copyOfState.isSelectedAppointment = true
+		copyOfState.selectedAppointment = item
 		this.setState(copyOfState)
 	}
 
 	render() {
-		const { formHeader } = this.props.context
+		const { formHeader, onChange } = this.props.context
 		return (
 			<Fragment>
 				<form onSubmit={this.onSubmit}>
@@ -99,14 +109,15 @@ export class SelectAppointment extends Component {
 					<SelectableButtonList
 						heading="Select an appointment"
 						enableH2={true}
-						buttonList={this.state.appointments}
-						onButtonClick={this.onButtonClick}
-						colour="radio-list"
-						inline={true}
+						displayHeading={true}
+						enableRadioH2={false}
+						buttonList={this.state.eighteenWeekAppointments}
+						onRadioButtonChange={onChange}
 						showMore={this.state.showMore}
 						onClick={this.onClick}
+						cssClass='new-appointment-radio-container'
 					/>
-					<Button isValid={this.state.isSelectedAppointment} label="Next step" />
+					<Button isValid={this.state.isSelectedAppointment} label="Next step" isLoading={this.state.isLoading}/>
 				</form>
 				<Anchor label="Back" history={history} />
 			</Fragment>
