@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Context } from '../../context/'
-import moment from 'moment'
 
 class Provider extends Component{
 	constructor(props){
@@ -9,7 +8,10 @@ class Provider extends Component{
 		this.state = {
 			formHeader: 'Book your taxi driver knowledge test',
 			bookingId: '',
-			testDate: '',
+			testDate: {
+				value: '',
+				isValid: false
+			},
 			testType: {
 				value:'',
 				isValid: false
@@ -24,32 +26,27 @@ class Provider extends Component{
 			},
 			firstName: {
 				value: '',
-				isValid: ''
+				isValid: false
 			},
 			lastName: {
 				value: '',
-				isValid: ''
+				isValid: false
 			},
 			phoneNumber: {
 				value: '',
-				isValid: ''
+				isValid: false
 			},
 			emailAddress: {
 				value: '',
-				isValid: ''
+				isValid: false
 			},
 			address: {
 				value: '',
-				isValid: ''
+				isValid: false
 			},
-			appointments: [],
-			twelveWeekAppointments: [],
-			eighteenWeekAppointments: [],
-			selectedAppointment:{},
-			paymentReference: '',
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
 			onChange: this.onChange,
-			isOutsideRange: this.isOutsideRange
+			setBookingId: bookingId => this.setState({bookingId})
 		}
 	}
 	
@@ -59,10 +56,6 @@ class Provider extends Component{
 		copyOfState[event.target.name].isValid = isValid
 
 		this.setState(copyOfState)
-	}
-
-	isOutsideRange = (date) => {
-		return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
 	}
 
 	onFormSubmission = () => {

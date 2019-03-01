@@ -50,10 +50,11 @@ export const AboutYourself = props => {
                     onChange={context.onChange}
                 />
                 <AddressPicker
-                    name={'address'}
+                    name='address'
                     address={context.address.value}
-                    automaticLabel={'Enter your postcode'}
-                    automaticTextLabel={'Select the address below'}
+                    automaticLabel='Enter your postcode'
+                    automaticTextLabel='Select the address below'
+                    useVerintLookup={true}
                     useStockportPostcode={true}
                     enableHeading={false}
                     shouldDisplayManualSearch={false}

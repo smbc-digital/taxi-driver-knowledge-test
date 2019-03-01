@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { RadioInputsContainer, DatePicker, Button, Anchor } from 'smbc-react-components'
 import { getPageRoute } from '../../../helpers/pagehelper'
+import moment from 'moment'
 
-export const Resit = props => {
-	const { context, history } = props
+export const Resit = ({ context, history })  => {
+	const isOutsideRange = (date) => {
+		return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
+	}
 
 	const options = [
         {
@@ -20,7 +23,7 @@ export const Resit = props => {
             name: 'isResit',
             value: 'true',
 			renderIfChecked: () => (
-                context.isResit.value === 'true' &&
+                context.isResit.value &&
                 <DatePicker
 					label='Select the date of your last test'
 					description='You&#39;ll be able to choose a new test 4 weeks from this date'
@@ -30,15 +33,14 @@ export const Resit = props => {
                     value={context.previousTestDate.value}
 					onChange={context.onChange}
 					validationMessage={'Check the date and try again'}
-					isOutsideRange={context.isOutsideRange}
+					isOutsideRange={isOutsideRange}
                 />
             )
-            
         }
-    ]
+	]
 	
 	const onSubmit = (event) => {
-		if(context.isResit.value == 'false') {
+		if(!context.isResit.value) {
 			context.previousTestDate.value = ''
 			context.previousTestDate.isValid = false
 		}
@@ -52,12 +54,18 @@ export const Resit = props => {
 				<h1>{context.formHeader}</h1>
 				<h2>Is this the first time you&#39;ll be taking the taxi driver knowledge test?</h2>
 				<RadioInputsContainer
-					onChange={context.onChange}
+					onChange={(event, isValid) => context.onChange({
+						target: {
+							name: event.target.name,
+							value: event.target.value === 'true' ? true : false
+						}
+					},
+					isValid)}
 					options={options}
 					value={context.isResit.value}
 					displayHeading={false}
 				/>
-				<Button label="Next step" isValid={context.isResit.value == 'false' || (context.isResit.value == 'true' && context.previousTestDate.isValid)} />
+				<Button label="Next step" isValid={context.isResit.isValid && (!context.isResit.value || context.previousTestDate.isValid)} />
 			</form>
 			<Anchor label='Back' history={history} />
 		</Fragment>

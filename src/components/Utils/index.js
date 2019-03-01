@@ -1,13 +1,30 @@
 import 'isomorphic-fetch'
 import moment from 'moment'
 
-export const getAvailableAppointments = async context => {
-	const earliestNewTestDate = context.isResit.value == 'false' ? moment() : moment(context.previousTestDate.value).add(4, 'weeks')
-	const dateToSearchFrom = earliestNewTestDate < moment() ? moment() : earliestNewTestDate
+export const formatAvailableAppointments = appointments => {
+	return appointments.map(appointment => {
+		return {
+			date: appointment.date,
+			displayDate: moment(appointment.date, 'DD/MM/YYYY').format('dddd D MMMM YYYY'),
+			times: appointment.times.map(time => {
+				const value = moment(`${appointment.date} ${time.startTime}`, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY HH:mm:ss')
+				return {
+					startTime: time.startTime,
+					id: value,
+					value,
+					label: moment(time.startTime, 'HH:mm:ss').format('H:mma'),
+					name: 'testDate'
+				}
+			})
+		}
+	})
+}
+
+export const getAvailableAppointments = async (isResit, from, to) => {
 	const request = {
-		from: dateToSearchFrom,
-		to: moment(dateToSearchFrom).add(18, 'weeks'),
-		isResit: context.isResit.value == 'true'
+		from,
+		to,
+		isResit: isResit
 	}
 
 	try {
@@ -20,11 +37,11 @@ export const getAvailableAppointments = async context => {
 			body: JSON.stringify(request)
 		})
 
-        const responseObject = await result.json()
+		const responseObject = await result.json()
 
 		return {
 			status: result.status,
-			appointments: responseObject
+			appointments: formatAvailableAppointments(responseObject)
 		}
 	} catch (error) {
 		return {
@@ -33,16 +50,7 @@ export const getAvailableAppointments = async context => {
 	}
 }
 
-export const reserveAppointment = async (isResit, selectedAppointment) => {
-	const date = moment(selectedAppointment.date, 'dddd D MMMM YYYY', true).format('DD/MM/YYYY')
-	console.log(selectedAppointment)
-	console.log(selectedAppointment.times.startTime)
-	const time = moment(selectedAppointment.times.endTime, 'H:mma', true).format('HH:mm:ss')
-	const appointmentDateTime = moment(date + ' ' + time, 'DD/MM/YYYY HH:mm:ss')
-	console.log(date)
-	console.log(time)
-	console.log(appointmentDateTime)
-
+export const reserveAppointment = async (isResit, testDate) => {
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/pencil-an-appointment', {
 			method: 'POST',
@@ -51,7 +59,7 @@ export const reserveAppointment = async (isResit, selectedAppointment) => {
 				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify({
-				appointmentDateTime, isResit
+				testDate, isResit
 			})
 		})
 
@@ -59,8 +67,7 @@ export const reserveAppointment = async (isResit, selectedAppointment) => {
 
 		return {
 			status: result.status,
-			bookingId: responseObject,
-			testDate: appointmentDateTime
+			bookingId: responseObject
 		}
 	} catch (error) {
 		return {

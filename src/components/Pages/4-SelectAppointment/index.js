@@ -9,68 +9,31 @@ import moment from 'moment'
 export class SelectAppointment extends Component {
 	constructor(props) {
 		super(props)
-		props.context
+
+		const earliestNewTestDate = !this.props.context.isResit.value ? moment() : moment(this.props.context.previousTestDate.value).add(4, 'weeks')
 
 		this.state = {
 			appointments: [],
-			twelveWeekAppointments: [],
-			eighteenWeekAppointments: [],
-			selectedAppointment:{},
-			isSelectedAppointment: false,
 			showMore: true,
-			isLoading: false
+			isLoading: false,
+			dateToSearchFrom: earliestNewTestDate < moment() ? moment() : earliestNewTestDate
 		}
 	}
 
 	componentDidMount = async () => {
-		const result = await getAvailableAppointments(this.props.context)
-		const appointments = result.appointments
-		const copyOfState = Object.assign({}, this.state)
-		copyOfState.eighteenWeekAppointments = appointments
-		this.setState(copyOfState)
-		// this.getTwelveWeeksAppointments()
+		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).format(), moment(this.state.dateToSearchFrom).add(18, 'weeks').format())
+
+		this.setState({appointments: result.appointments})
 	}
 
-	getTwelveWeeksAppointments = () => {
-		let twelveWeeks = []
-		let formattedTwelveWeeks = []
-		let eighteenWeeks = Object.assign({}, this.state.eighteenWeekAppointments)
-		const base = moment(eighteenWeeks[0].date, 'dddd D MMMM YYYY', true).format()
-		
-		const twelveWeekLimit = moment(base)
-			.add(12, 'weeks')
-			.format()
-		console.log(twelveWeekLimit)
-
-		for (let i = 0; i < eighteenWeeks.length; i++) {
-			const appointmentB = eighteenWeeks[i]
-			const baseAppointmentDate = moment(eighteenWeeks[i].date, 'dddd D MMMM YYYY', true).format()
-			console.log(baseAppointmentDate)
-			if (baseAppointmentDate < twelveWeekLimit) {
-				twelveWeeks.push(appointmentB)
-			}
-		}
-
-		for (let i = 0; i < twelveWeeks.length; i++) {
-			formattedTwelveWeeks.push(this.state.eighteenWeekAppointments[i])
-		}
-
-		this.setState({
-			appointments: formattedTwelveWeeks,
-			twelveWeekAppointments: formattedTwelveWeeks
-		})
-	}
-
-	onSubmit = async(event) => {
+	onSubmit = async event => {
 		event.preventDefault()
-		const { context, history } = this.props
-		
 		this.setState({ isLoading: true })
-		let result = await reserveAppointment(context.isResit, this.state.selectedAppointment)
-		const copyOfState = Object.assign({}, this.state)
-		copyOfState.testDate = result.testDate
-		copyOfState.bookingId = result.bookingId
-		this.setState(copyOfState)
+		
+		const { context: { setBookingId, isResit, testDate }, history } = this.props
+		const result = reserveAppointment(isResit, testDate.value)
+		
+		setBookingId(result.bookingId)
 
         if(result.status === 200){
             history.push(getPageRoute(5))
@@ -79,25 +42,9 @@ export class SelectAppointment extends Component {
         }
 	}
 
-	onClick = event => {
-		event.preventDefault()
-		const copyOfState = Object.assign({}, this.state)
-		copyOfState.appointments = copyOfState.eighteenWeekAppointments
-		copyOfState.showMore = false
-		this.setState(copyOfState)
-	}
-
-	onButtonClick = (event, item) => {
-		event.preventDefault()
-		this.props.context.selectedAppointment = item
-		const copyOfState = Object.assign({}, this.state)
-		copyOfState.isSelectedAppointment = true
-		copyOfState.selectedAppointment = item
-		this.setState(copyOfState)
-	}
-
 	render() {
-		const { formHeader, onChange } = this.props.context
+		const { formHeader, onChange, testDate } = this.props.context
+		const { showMore, appointments, dateToSearchFrom, isLoading} = this.state
 		return (
 			<Fragment>
 				<form onSubmit={this.onSubmit}>
@@ -111,13 +58,16 @@ export class SelectAppointment extends Component {
 						enableH2={true}
 						displayHeading={true}
 						enableRadioH2={false}
-						buttonList={this.state.eighteenWeekAppointments}
-						onRadioButtonChange={onChange}
-						showMore={this.state.showMore}
-						onClick={this.onClick}
+						buttonList={showMore ? appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).format() < moment(dateToSearchFrom).add(12, 'weeks').format()) : appointments }
+						onChange={onChange}
+						showMore={showMore}
+						onClick={event => {
+							event.preventDefault()
+							this.setState({showMore: false})
+						}}
 						cssClass='new-appointment-radio-container'
 					/>
-					<Button isValid={this.state.isSelectedAppointment} label="Next step" isLoading={this.state.isLoading}/>
+					<Button isValid={testDate.isValid} label="Next step" isLoading={isLoading}/>
 				</form>
 				<Anchor label="Back" history={history} />
 			</Fragment>
