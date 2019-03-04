@@ -29,7 +29,7 @@ describe('TypeOfTest', () => {
 			// Arrange
 			const data = {
                 testType: {
-                    value: 'Private hire',
+                    value: 'Private Hire',
                     isValid: true
                 }
 			}

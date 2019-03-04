@@ -22,25 +22,25 @@ export const TypeOfTest = props => {
 						label: 'Private hire',
 						id: 'private',
 						name: 'testType',
-						value: 'Private hire'
+						value: 'Private Hire'
 					},
 					{
 						label: 'Hackney carriage',
 						id: 'hackney',
 						name: 'testType',
-						value: 'Hackney carriage'
+						value: 'Hackney Carriage'
 					},
 					{
 						label: 'Executive hire',
 						id: 'executive',
 						name: 'testType',
-						value: 'Executive hire'
+						value: 'Executive Hire'
 					},
 					{
 						label: 'Assisted transport',
 						id: 'assisted',
 						name: 'testType',
-						value: 'Assisted transport'
+						value: 'Assisted Transport'
 					}]}
 					value={context.testType.value}
 					displayHeading={true}

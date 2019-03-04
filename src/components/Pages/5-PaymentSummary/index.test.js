@@ -17,12 +17,19 @@ describe('PaymentSummary', () => {
 		// Arrange
 		const url = 'http://www.test.url/paymentTest'
 		const data = {
-			testDate: '26/02/2019',
+			testDate: {
+				value: '26/02/2019',
+				isValid: true
+			},
 			selectedAppointment:{
 				date: 'test',
 				times:{
 					startTime: 'asd'
 				}
+			},
+			testType: {
+				value: 'Private Hire',
+				isValid: true
 			}
 		}
 		const history = { push: jest.fn() }

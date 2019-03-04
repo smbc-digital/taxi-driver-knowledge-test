@@ -20,7 +20,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
         name="testType"
         onChange={[Function]}
         type="radio"
-        value="Private hire"
+        value="Private Hire"
       />
       <label
         htmlFor="private"
@@ -39,7 +39,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
         name="testType"
         onChange={[Function]}
         type="radio"
-        value="Hackney carriage"
+        value="Hackney Carriage"
       />
       <label
         htmlFor="hackney"
@@ -58,7 +58,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
         name="testType"
         onChange={[Function]}
         type="radio"
-        value="Executive hire"
+        value="Executive Hire"
       />
       <label
         htmlFor="executive"
@@ -77,7 +77,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
         name="testType"
         onChange={[Function]}
         type="radio"
-        value="Assisted transport"
+        value="Assisted Transport"
       />
       <label
         htmlFor="assisted"

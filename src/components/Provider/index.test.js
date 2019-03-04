@@ -41,6 +41,20 @@ describe('Provider', () => {
         expect(wrapper.state().displayRecaptcha).toBeFalsy()
     })
 
+    describe('setBookingId', () => {
+        it('should update the state with the bookingId', () => {
+            // Arrange
+            const bookingId = 'test-id'
+            const wrapper = mount(<Provider></Provider>)
+
+            // Act
+            wrapper.instance().setBookingId(bookingId)
+
+            // Assert
+            expect(wrapper.state().bookingId).toBe(bookingId)
+        })
+    })
+
     describe('onChange', () => {
         it('should update the state with event data', () => {
             // Arrange
@@ -61,16 +75,16 @@ describe('Provider', () => {
         })
     })
 
-    // describe('onFormSubmission', () => {
-    //     it('should set submittedFormSuccessfully to true', () => {
-    //         // Arrange
-    //         const wrapper = mount(<Provider></Provider>)
+    describe('onFormSubmission', () => {
+        it('should set submittedFormSuccessfully to true', () => {
+            // Arrange
+            const wrapper = mount(<Provider></Provider>)
 
-    //         // Act
-    //         wrapper.instance().onFormSubmission()
+            // Act
+            wrapper.instance().onFormSubmission()
 
-    //         // Assert
-    //         expect(wrapper.state().submittedFormSuccessfully).toBe(true)
-    //     })
-    // })
+            // Assert
+            expect(wrapper.state().submittedFormSuccessfully).toBe(true)
+        })
+    })
 })

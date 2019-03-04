@@ -46,8 +46,12 @@ class Provider extends Component{
 			},
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
 			onChange: this.onChange,
-			setBookingId: bookingId => this.setState({bookingId})
+			setBookingId: this.setBookingId
 		}
+	}
+
+	setBookingId = (bookingId) => {
+		this.setState({bookingId})
 	}
 	
 	onChange = (event, isValid) => {
