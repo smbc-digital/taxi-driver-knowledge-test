@@ -27,8 +27,6 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 		isResit: isResit
 	}
 
-	console.log(request.from)
-
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/available-appointments', {
 			method: 'POST',
@@ -53,7 +51,6 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 }
 
 export const reserveAppointment = async (isResit, testDate) => {
-	console.log(testDate)
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/pencil-an-appointment', {
 			method: 'POST',
@@ -72,7 +69,8 @@ export const reserveAppointment = async (isResit, testDate) => {
 			status: result.status,
 			bookingId: responseObject
 		}
-	} catch (error) {
+	} 
+	catch (error) {
 		return {
 			status: 500
 		}
