@@ -6,6 +6,7 @@ import { getPaymentUrl } from '../../Utils'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import withContext from '../../WithContext'
 import ReCAPTCHA from 'react-google-recaptcha'
+import moment from 'moment'
 
 export class PaymentSummary extends Component {
 	constructor(props) {
@@ -37,12 +38,12 @@ export class PaymentSummary extends Component {
 
 render() {
     const { isLoading, recaptchaValid } = this.state
-    const { context : {displayRecaptcha, formHeader, selectedAppointment }, history } = this.props
+    const { context : {displayRecaptcha, formHeader, testDate }, history } = this.props
     return ( 
         <form onSubmit={this.onSubmit}>
             <h1>{formHeader}</h1>
             <h2>Your booking summary</h2>
-            <p>Your booking to take the taxi driver knowledge test is at {selectedAppointment.times.startTime} on {selectedAppointment.date}.</p>
+            <p>Your booking to take the taxi driver knowledge test is at {moment(testDate.value).format('H:mma')} on {moment(testDate.value).format('dddd D MMMM')}.</p>
             <p>You&#39;ll now be taken to our online system to make the payment.</p>
             <p>The cost is £70.</p>
             {displayRecaptcha && (

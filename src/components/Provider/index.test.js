@@ -61,42 +61,16 @@ describe('Provider', () => {
         })
     })
 
-    describe('isOutsideRange', () => {
-        it('should return false for date in past', () => {
-            // Arrange
-            const wrapper = mount(<Provider></Provider>)
-            const date = moment().subtract(2, 'days')
+    // describe('onFormSubmission', () => {
+    //     it('should set submittedFormSuccessfully to true', () => {
+    //         // Arrange
+    //         const wrapper = mount(<Provider></Provider>)
 
-            // Act
-            const result = wrapper.instance().isOutsideRange(date)
+    //         // Act
+    //         wrapper.instance().onFormSubmission()
 
-            // Assert
-            expect(result).toBe(false)
-        })
-
-        it('should return true for date in the future', () => {
-            // Arrange
-            const wrapper = mount(<Provider></Provider>)
-            const date = moment().add(2, 'days')
-
-            // Act
-            const result = wrapper.instance().isOutsideRange(date)
-
-            // Assert
-            expect(result).toBe(true)
-        })
-    })
-
-    describe('onFormSubmission', () => {
-        it('should set submittedFormSuccessfully to true', () => {
-            // Arrange
-            const wrapper = mount(<Provider></Provider>)
-
-            // Act
-            wrapper.instance().onFormSubmission()
-
-            // Assert
-            expect(wrapper.state().submittedFormSuccessfully).toBe(true)
-        })
-    })
+    //         // Assert
+    //         expect(wrapper.state().submittedFormSuccessfully).toBe(true)
+    //     })
+    // })
 })

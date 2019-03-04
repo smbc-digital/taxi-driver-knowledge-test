@@ -7,7 +7,7 @@ export const formatAvailableAppointments = appointments => {
 			date: appointment.date,
 			displayDate: moment(appointment.date, 'DD/MM/YYYY').format('dddd D MMMM YYYY'),
 			times: appointment.times.map(time => {
-				const value = moment(`${appointment.date} ${time.startTime}`, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY HH:mm:ss')
+				const value = moment(`${appointment.date} ${time.startTime}`, 'DD/MM/YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
 				return {
 					startTime: time.startTime,
 					id: value,
@@ -26,6 +26,8 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 		to,
 		isResit: isResit
 	}
+
+	console.log(request.from)
 
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/available-appointments', {
@@ -51,6 +53,7 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 }
 
 export const reserveAppointment = async (isResit, testDate) => {
+	console.log(testDate)
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/pencil-an-appointment', {
 			method: 'POST',

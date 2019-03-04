@@ -31,7 +31,7 @@ export class SelectAppointment extends Component {
 		this.setState({ isLoading: true })
 		
 		const { context: { setBookingId, isResit, testDate }, history } = this.props
-		const result = reserveAppointment(isResit, testDate.value)
+		const result = await reserveAppointment(isResit.value, moment(testDate.value).format())
 		
 		setBookingId(result.bookingId)
 
