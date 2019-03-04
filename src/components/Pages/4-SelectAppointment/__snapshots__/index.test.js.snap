@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectAppointment snapshot renders correctly with spinner while there are no appointments 1`] = `
+Array [
+  <form
+    onSubmit={[Function]}
+  >
+    <h1 />
+    <div>
+      <section
+        className="alert-information-form"
+      >
+        <span
+          className="fa fa-info-circle"
+        />
+        <p
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "The test usually takes place on a Wednesday. There may be times when we run the test on other days, these will be displayed below.",
+            }
+          }
+        />
+      </section>
+    </div>
+    <h2>
+      Select an appointment
+    </h2>
+    <div
+      className="page-loading-spinner"
+    />
+    <a
+      className="anchor-with-icon"
+      href="#"
+      onClick={[Function]}
+    >
+       
+      <i
+        className="fa fa-plus-square fa-lg"
+      />
+      Show more dates
+    </a>
+    <button
+      className="button-primary"
+      disabled={true}
+      id={undefined}
+      onClick={undefined}
+      type="submit"
+    >
+      Next step
+    </button>
+  </form>,
+  <p>
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      Back
+    </a>
+  </p>,
+]
+`;

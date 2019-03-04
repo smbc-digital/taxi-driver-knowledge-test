@@ -42,6 +42,21 @@ export class SelectAppointment extends Component {
         }
 	}
 
+	getAppointments = (appointments, showMore, dateToSearchFrom) => {
+		// this.state.showMore ? return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).format() < moment(dateToSearchFrom).add(12, 'weeks').format()) : return appointments
+		if (showMore) {
+			return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).format() < moment(dateToSearchFrom).add(12, 'weeks').format())
+		}
+		else {
+			return appointments
+		}
+	}
+
+	onClick = (event) => {
+		event.preventDefault()
+		this.setState({showMore: false})
+	}
+
 	render() {
 		const { formHeader, onChange, testDate } = this.props.context
 		const { showMore, appointments, dateToSearchFrom, isLoading} = this.state
@@ -58,13 +73,10 @@ export class SelectAppointment extends Component {
 						enableH2={true}
 						displayHeading={true}
 						enableRadioH2={false}
-						buttonList={showMore ? appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).format() < moment(dateToSearchFrom).add(12, 'weeks').format()) : appointments }
+						buttonList={this.getAppointments(appointments, showMore, dateToSearchFrom)}
 						onChange={onChange}
 						showMore={showMore}
-						onClick={event => {
-							event.preventDefault()
-							this.setState({showMore: false})
-						}}
+						onClick={this.onClick}
 						cssClass='new-appointment-radio-container'
 					/>
 					<Button isValid={testDate.isValid} label="Next step" isLoading={isLoading}/>

@@ -2,7 +2,7 @@ import React from 'react'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Provider from '../Provider'
-// import moment from 'moment'
+import moment from 'moment'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -39,6 +39,32 @@ describe('Provider', () => {
 
         // Assert
         expect(wrapper.state().displayRecaptcha).toBeFalsy()
+    })
+
+    describe('isOutsideRange', () => {
+        it('should return false for date in past', () => {
+            // Arrange
+            const wrapper = mount(<Provider></Provider>)
+            const date = moment().subtract(2, 'days')
+
+            // Act
+            const result = wrapper.instance().isOutsideRange(date)
+
+            // Assert
+            expect(result).toBe(false)
+        })
+
+        it('should return true for date in the future', () => {
+            // Arrange
+            const wrapper = mount(<Provider></Provider>)
+            const date = moment().add(2, 'days')
+
+            // Act
+            const result = wrapper.instance().isOutsideRange(date)
+
+            // Assert
+            expect(result).toBe(true)
+        })
     })
 
     describe('setBookingId', () => {

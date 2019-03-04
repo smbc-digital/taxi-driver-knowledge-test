@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Context } from '../../context/'
+import moment from 'moment'
 
 class Provider extends Component{
 	constructor(props){
@@ -46,8 +47,13 @@ class Provider extends Component{
 			},
 			displayRecaptcha: document.getElementById('displayRecaptcha') != null ? document.getElementById('displayRecaptcha').innerHTML === 'true' ? true : false : false,
 			onChange: this.onChange,
-			setBookingId: this.setBookingId
+			setBookingId: this.setBookingId,
+			isOutsideRange: this.isOutsideRange
 		}
+	}
+
+	isOutsideRange = (date) => {
+		return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
 	}
 
 	setBookingId = (bookingId) => {

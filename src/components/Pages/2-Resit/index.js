@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { RadioInputsContainer, DatePicker, Button, Anchor } from 'smbc-react-components'
 import { getPageRoute } from '../../../helpers/pagehelper'
-import moment from 'moment'
+// import moment from 'moment'
 
 export const Resit = ({ context, history })  => {
-	const isOutsideRange = (date) => {
-		return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
-	}
+	// const isOutsideRange = (date) => {
+	// 	return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
+	// }
 
 	const options = [
         {
@@ -33,17 +33,17 @@ export const Resit = ({ context, history })  => {
                     value={context.previousTestDate.value}
 					onChange={context.onChange}
 					validationMessage={'Check the date and try again'}
-					isOutsideRange={isOutsideRange}
+					isOutsideRange={context.isOutsideRange}
                 />
             )
         }
 	]
 	
 	const onSubmit = (event) => {
-		if(!context.isResit.value) {
-			context.previousTestDate.value = ''
-			context.previousTestDate.isValid = false
-		}
+		// if(!context.isResit.value) {
+		// 	context.previousTestDate.value = ''
+		// 	context.previousTestDate.isValid = false
+		// }
 		event.preventDefault()
 		history.push(getPageRoute(3))
 	}
