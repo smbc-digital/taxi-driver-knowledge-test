@@ -28,7 +28,7 @@ export class PaymentSummary extends Component {
         const { context, history } = this.props
         
         this.setState({ isLoading: true })
-        let rawResponse = await getPaymentUrl(context.bookingId, context.testDate)
+        let rawResponse = await getPaymentUrl(context.bookingId, context.testDate.value)
         if(rawResponse.status === 200){
             window.location.assign(rawResponse.url)
         } else{
