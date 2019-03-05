@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import { AlertForm, SelectableButtonList, Button, Anchor } from 'smbc-react-components'
-import { getAvailableAppointments, reserveAppointment } from '../../Utils'
+import { reserveAppointment } from '../../Utils'
 import moment from 'moment'
 
 export class SelectAppointment extends Component {
@@ -14,17 +14,16 @@ export class SelectAppointment extends Component {
 
 		this.state = {
 			appointments: [],
-			showMore: true,
 			isLoading: false,
 			dateToSearchFrom: earliestNewTestDate < moment() ? moment() : earliestNewTestDate
 		}
 	}
 
-	componentDidMount = async () => {
-		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).format(), moment(this.state.dateToSearchFrom).add(18, 'weeks').format())
+	// componentDidMount = async () => {
+	// 	const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).format(), moment(this.state.dateToSearchFrom).add(18, 'weeks').format())
 
-		this.setState({appointments: result.appointments})
-	}
+	// 	this.setState({appointments: result.appointments, isGettingAppointments: false})
+	// }
 
 	onSubmit = async event => {
 		event.preventDefault()
@@ -35,31 +34,25 @@ export class SelectAppointment extends Component {
 		
 		setBookingId(result.bookingId)
 
-        if(result.status === 200){
+		if(result.status === 200) {
             history.push(getPageRoute(5))
-        } else{
-            history.push(getPageRoute(7))
-        }
-	}
-
-	getAppointments = (appointments, showMore, dateToSearchFrom) => {
-		// this.state.showMore ? return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).format() < moment(dateToSearchFrom).add(12, 'weeks').format()) : return appointments
-		if (showMore) {
-			return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).format() < moment(dateToSearchFrom).add(12, 'weeks').format())
-		}
-		else {
-			return appointments
+		} else {
+			history.push(getPageRoute(7))
 		}
 	}
 
-	onClick = (event) => {
+	filterAppointments = appointments => {
+		return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).isBefore(moment(this.state.dateToSearchFrom).add(12, 'weeks')))
+	}
+
+	onClick = event => {
 		event.preventDefault()
 		this.setState({showMore: false})
 	}
 
 	render() {
 		const { formHeader, onChange, testDate } = this.props.context
-		const { showMore, appointments, dateToSearchFrom, isLoading} = this.state
+		const { appointments, isLoading} = this.state
 		return (
 			<Fragment>
 				<form onSubmit={this.onSubmit}>
@@ -70,14 +63,10 @@ export class SelectAppointment extends Component {
 					/>
 					<SelectableButtonList
 						heading="Select an appointment"
-						enableH2={true}
-						displayHeading={true}
-						enableRadioH2={false}
-						buttonList={this.getAppointments(appointments, showMore, dateToSearchFrom)}
+						buttonList={appointments}
+						filter={this.filterAppointments}
 						onChange={onChange}
-						showMore={showMore}
 						onClick={this.onClick}
-						cssClass='new-appointment-radio-container'
 					/>
 					<Button isValid={testDate.isValid} label="Next step" isLoading={isLoading}/>
 				</form>

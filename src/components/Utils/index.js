@@ -45,7 +45,8 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 		}
 	} catch (error) {
 		return {
-			status: 500
+			status: 500,
+			appointments: []
 		}
 	}
 }
