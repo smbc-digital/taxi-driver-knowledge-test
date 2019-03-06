@@ -71,46 +71,6 @@ describe('SelectAppointment', () => {
 	})
 
 	describe('getAppointments', () => {
-		it('should set appointments to full list when showMore is false', () => {
-			// Arrange
-			const now = moment()
-			const future = moment().add(13, 'weeks')
-			const appointments = [
-				{
-					date: now,
-					times: []
-				},
-				{
-					date: future
-				}
-			]
-
-			const data = {
-				isResit: {
-					value: false,
-					isValid: true
-				},
-				previousTestDate: {
-					value: '',
-					isValid: false
-				},
-				testDate: {
-					value: '25/04/2019',
-					isValid: true
-				},
-				setBookingId: jest.fn()
-			}
-
-			const history = { push: jest.fn() }
-			const wrapper = mount(<SelectAppointment context={ data } history={ history }/>)
-			// Act
-			const result = wrapper.instance().getAppointments(appointments, false, now)
-
-			// Assert
-			expect(result).toEqual(appointments)
-
-		})
-
 		it('should set appointments to 12 week list when showMore is true', () => {
 			// Arrange
 			const now = moment()
@@ -151,7 +111,7 @@ describe('SelectAppointment', () => {
 			const history = { push: jest.fn() }
 			const wrapper = mount(<SelectAppointment context={ data } history={ history }/>)
 			// Act
-			const result = wrapper.instance().getAppointments(appointments, true, now)
+			const result = wrapper.instance().filterAppointments(appointments)
 
 			// Assert
 			expect(result).toEqual(expectedAppointments)
