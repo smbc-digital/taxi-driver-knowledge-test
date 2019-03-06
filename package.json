@@ -8,7 +8,7 @@
 		"test:coverage": "jest --coverage --collectCoverageFrom=src/components/**/*.{js} --collectCoverageFrom=src/actions/**/*.{js} --collectCoverageFrom=src/reducers/**/*.{js} --collectCoverageFrom=src/helpers/**/*.{js}",
 		"start": "webpack-dev-server --mode development --open",
 		"lint": "eslint src",
-		"build": "webpack --mode production",
+		"build": "webpack --mode development",
 		"build:copy": "webpack --mode production && cp -r dist/. ",
 		"prepush": "echo 'Starting PrePush' && npm run test:coverage && npm run lint"
 	},
@@ -18,13 +18,13 @@
 		"isomorphic-fetch": "^2.2.1",
 		"moment": "^2.24.0",
 		"query-string": "^6.2.0",
-		"react": "^16.6.1",
+		"react": "^16.8.4",
 		"react-async-script": "^0.9.1",
-		"react-dom": "^16.6.1",
+		"react-dom": "^16.8.4",
 		"react-google-recaptcha": "^0.12.0",
 		"react-router": "^4.3.1",
 		"sanitize-html": "^1.20.0",
-		"smbc-react-components": "^4.1.74"
+		"smbc-react-components": "^4.1.78"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",

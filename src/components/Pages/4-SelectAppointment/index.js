@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import { AlertForm, SelectableButtonList, Button, Anchor } from 'smbc-react-components'
-import { reserveAppointment } from '../../Utils'
+import { reserveAppointment, getAvailableAppointments } from '../../Utils'
 import moment from 'moment'
 
 export class SelectAppointment extends Component {
@@ -19,25 +19,25 @@ export class SelectAppointment extends Component {
 		}
 	}
 
-	// componentDidMount = async () => {
-	// 	const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).format(), moment(this.state.dateToSearchFrom).add(18, 'weeks').format())
+	componentDidMount = async () => {
+		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).format(), moment(this.state.dateToSearchFrom).add(18, 'weeks').format())
 
-	// 	this.setState({appointments: result.appointments, isGettingAppointments: false})
-	// }
+		this.setState({appointments: result.appointments})
+	}
 
 	onSubmit = async event => {
 		event.preventDefault()
 		this.setState({ isLoading: true })
 		
-		const { context: { setBookingId, isResit, testDate }, history } = this.props
-		const result = await reserveAppointment(isResit.value, moment(testDate.value).format())
+		const { context: { setBookingId, isResit, testDate }, history: { push } } = this.props
+		const { bookingId, status } = await reserveAppointment(isResit.value, moment(testDate.value).format())
 		
-		setBookingId(result.bookingId)
+		setBookingId(bookingId)
 
-		if(result.status === 200) {
-            history.push(getPageRoute(5))
+		if(status === 200) {
+            push(getPageRoute(5))
 		} else {
-			history.push(getPageRoute(7))
+			push(getPageRoute(7))
 		}
 	}
 
@@ -51,8 +51,8 @@ export class SelectAppointment extends Component {
 	}
 
 	render() {
-		const { formHeader, onChange, testDate } = this.props.context
-		const { appointments, isLoading} = this.state
+		const { context: {formHeader, onChange, testDate}, history } = this.props
+		const { appointments, isLoading } = this.state
 		return (
 			<Fragment>
 				<form onSubmit={this.onSubmit}>

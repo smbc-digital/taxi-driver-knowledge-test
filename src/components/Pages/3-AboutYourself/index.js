@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { getPageRoute } from '../../../helpers/pagehelper'
 
-export const AboutYourself = props => {
-    const {context, history } = props
+export const AboutYourself = ({ context, history }) => {
 
     const onSubmit = (event) => {
         event.preventDefault()
