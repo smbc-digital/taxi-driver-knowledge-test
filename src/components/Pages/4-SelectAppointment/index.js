@@ -38,7 +38,9 @@ export class SelectAppointment extends Component {
 			lastName: context.lastName, 
 			phoneNumber: context.phoneNumber, 
 			emailAddress: context.emailAddress, 
-			address: context.address
+			address: context.address,
+			testType: context.testType,
+			previousTestDate: context.previousTestDate
 		}
 
 		const { bookingId, status } = await reserveAppointment(reserveRequest)
