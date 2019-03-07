@@ -29,10 +29,21 @@ export class SelectAppointment extends Component {
 		event.preventDefault()
 		this.setState({ isLoading: true })
 		
-		const { context: { setBookingId, isResit, testDate }, history: { push } } = this.props
-		const { bookingId, status } = await reserveAppointment(isResit.value, moment(testDate.value).format())
+		const { context, history: { push } } = this.props
 		
-		setBookingId(bookingId)
+		const reserveRequest = {
+			isResit: context.isResit.value, 
+			testDate: moment(context.testDate.value).format(),
+			firstName: context.firstName, 
+			lastName: context.lastName, 
+			phoneNumber: context.phoneNumber, 
+			emailAddress: context.emailAddress, 
+			address: context.address
+		}
+
+		const { bookingId, status } = await reserveAppointment(reserveRequest)
+		
+		context.setBookingId(bookingId)
 
 		if(status === 200) {
             push(getPageRoute(5))
