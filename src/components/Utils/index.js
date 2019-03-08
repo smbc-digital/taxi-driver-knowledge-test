@@ -64,8 +64,6 @@ export const reserveAppointment = async ({isResit, testDate, firstName, lastName
 			previousTestDate: previousTestDate.value
 		}
 
-		console.log(request)
-
 		const result = await fetch('/book-taxi-driver-knowledge-test/pencil-an-appointment', {
 			method: 'POST',
 			headers: {
