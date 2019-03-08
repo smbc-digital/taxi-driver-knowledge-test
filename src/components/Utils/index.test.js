@@ -1,4 +1,4 @@
-import { getPaymentUrl, formatAvailableAppointments, getAvailableAppointments } from './index'
+import { getPaymentUrl, formatAvailableAppointments, getAvailableAppointments, reserveAppointment } from './index'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
@@ -50,51 +50,105 @@ describe('getAvailableAppointments', () => {
     })
 })
 
-// describe('reserveAppointment', () => {
-//     beforeEach(() => {
-// 		fetch.resetMocks()
-//     })
+describe('reserveAppointment', () => {
+    beforeEach(() => {
+		fetch.resetMocks()
+    })
 
-//     it('should call frontend', async () => {
+    it('should call frontend', async () => {
 
-//         let expectedResult = {status: 200}
+        let expectedResult = {status: 200}
 
-//         let data = {
-//             testDate: '2019-03-01T09:45:00',
-//             isResit: false,
-//             name: {
-//                 firstName: {
-//                     value: 'test'
-//                 },
-//                 lastName: {
-//                     value: 'name'
-//                 }
-//             },
-//             phoneNumber: {
-//                 value: '01611111111'
-//             },
-//             emailAddress: {
-//                 value: 'email@email.com'
-//             },
-//             address: {
-//                 value: {
-//                     selectedAddress: 'test address'
-//                 }
-//             },
-//             testType: {
-//                 value: 'Hackney Carriage'
-//             },
-//             previousTestDate: {
-//                 value: ''
-//             }
-//         }
+        let data = {
+            testDate: '2019-03-01T09:45:00',
+            isResit: false,
+            firstName: {
+                value: 'test',
+                isValid: true
+            },
+            lastName: {
+                value: 'name',
+                isValid: true
+            },
+            phoneNumber: {
+                value: '01611111111',
+                isValid: true
+            },
+            emailAddress: {
+                value: 'email@email.com',
+                isValid: true
+            },
+            address: {
+                value: {
+                    selectedAddress: 'test address'
+                },
+                isValid: true
+            },
+            testType: {
+                value: 'Hackney Carriage',
+                isValid: true
+            },
+            previousTestDate: {
+                value: '',
+                isValid: true
+            }
+        }
 
-//         fetch.mockResponse(JSON.stringify(expectedResult))
+        fetch.mockResponse(JSON.stringify(expectedResult))
 
-//         await expect(reserveAppointment(data))
-//         expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/pencil-an-appointment', expect.anything())
-//     })
-// })
+        await expect(reserveAppointment(data))
+        expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/pencil-an-appointment', expect.anything())
+    })
+
+    it('should call frontend with manual address', async () => {
+
+        let expectedResult = {status: 200}
+
+        let data = {
+            testDate: '2019-03-01T09:45:00',
+            isResit: false,
+            firstName: {
+                value: 'test',
+                isValid: true
+            },
+            lastName: {
+                value: 'name',
+                isValid: true
+            },
+            phoneNumber: {
+                value: '01611111111',
+                isValid: true
+            },
+            emailAddress: {
+                value: 'email@email.com',
+                isValid: true
+            },
+            address: {
+                value: {
+                    addressLine1: 'test address',
+                    addressLine2: 'test address',
+                    town: 'town',
+                    postcode: 'postcode'
+                },
+                isValid: true
+            },
+            testType: {
+                value: 'Hackney Carriage',
+                isValid: true
+            },
+            previousTestDate: {
+                value: '',
+                isValid: true
+            }
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(reserveAppointment(data))
+        expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/pencil-an-appointment', expect.anything())
+    })
+})
+
 describe('formatAvailableAppointments', () => {
     it('it should format available appointents', async () => {
         // Arrange
