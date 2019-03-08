@@ -1,4 +1,4 @@
-import { getPaymentUrl, formatAvailableAppointments, getAvailableAppointments, reserveAppointment } from './index'
+import { getPaymentUrl, formatAvailableAppointments, getAvailableAppointments } from './index'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
