@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import queryString from 'query-string'
 import moment from 'moment'
-
 import showBreadCrumbs from '../../../helpers/breadcrumbHelper'
 
 export class Success extends Component {
@@ -18,6 +17,7 @@ export class Success extends Component {
 
 	render() {
 		const { testDate } = queryString.parse(location.search)
+		console.log(moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd Do MMMM YYYY'))
 
 		return (
 			<Fragment>
@@ -26,7 +26,7 @@ export class Success extends Component {
 					<p className="h2">Thank you for booking to take the taxi driver knowledge test</p>
 				</section>
 				<section className="body-container">
-					<p>Your appointment to take the hackney carriage taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('hh:mmA')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd do MMMM YYYY')}</b> </p>
+					<p>Your appointment to take the hackney carriage taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('hh:mmA')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd Do MMMM YYYY')}</b> </p>
                     <p>We&#39;ve sent you a confirmation email including this information.</p>
 					<h2>What happens next</h2>
 					<p>
