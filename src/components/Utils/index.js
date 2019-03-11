@@ -51,7 +51,7 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 	}
 }
 
-export const reserveAppointment = async ({isResit, testDate, firstName, lastName, phoneNumber, emailAddress, address}) => {
+export const reserveAppointment = async ({isResit, testDate, firstName, lastName, phoneNumber, emailAddress, address, testType, previousTestDate}) => {
 	try {
 		const request = {
 			testDate, 
@@ -59,10 +59,10 @@ export const reserveAppointment = async ({isResit, testDate, firstName, lastName
 			name: `${firstName.value} ${lastName.value}`,
 			address: address.value.selectedAddress || `${address.value.addressLine1} ${address.value.addressLine2} ${address.value.town} ${address.value.postcode}`,
 			email: emailAddress.value,
-			phoneNumber: phoneNumber.value
+			phoneNumber: phoneNumber.value,
+			testType: testType.value,
+			previousTestDate: previousTestDate.value
 		}
-
-		console.log(request)
 
 		const result = await fetch('/book-taxi-driver-knowledge-test/pencil-an-appointment', {
 			method: 'POST',

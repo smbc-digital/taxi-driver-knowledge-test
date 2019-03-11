@@ -17,7 +17,6 @@ export class Success extends Component {
 
 	render() {
 		const { testDate } = queryString.parse(location.search)
-		console.log(moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd Do MMMM YYYY'))
 
 		return (
 			<Fragment>

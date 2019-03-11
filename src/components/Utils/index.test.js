@@ -61,7 +61,85 @@ describe('reserveAppointment', () => {
 
         let data = {
             testDate: '2019-03-01T09:45:00',
-            isResit: false
+            isResit: false,
+            firstName: {
+                value: 'test',
+                isValid: true
+            },
+            lastName: {
+                value: 'name',
+                isValid: true
+            },
+            phoneNumber: {
+                value: '01611111111',
+                isValid: true
+            },
+            emailAddress: {
+                value: 'email@email.com',
+                isValid: true
+            },
+            address: {
+                value: {
+                    selectedAddress: 'test address'
+                },
+                isValid: true
+            },
+            testType: {
+                value: 'Hackney Carriage',
+                isValid: true
+            },
+            previousTestDate: {
+                value: '',
+                isValid: true
+            }
+        }
+
+        fetch.mockResponse(JSON.stringify(expectedResult))
+
+        await expect(reserveAppointment(data))
+        expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/pencil-an-appointment', expect.anything())
+    })
+
+    it('should call frontend with manual address', async () => {
+
+        let expectedResult = {status: 200}
+
+        let data = {
+            testDate: '2019-03-01T09:45:00',
+            isResit: false,
+            firstName: {
+                value: 'test',
+                isValid: true
+            },
+            lastName: {
+                value: 'name',
+                isValid: true
+            },
+            phoneNumber: {
+                value: '01611111111',
+                isValid: true
+            },
+            emailAddress: {
+                value: 'email@email.com',
+                isValid: true
+            },
+            address: {
+                value: {
+                    addressLine1: 'test address',
+                    addressLine2: 'test address',
+                    town: 'town',
+                    postcode: 'postcode'
+                },
+                isValid: true
+            },
+            testType: {
+                value: 'Hackney Carriage',
+                isValid: true
+            },
+            previousTestDate: {
+                value: '',
+                isValid: true
+            }
         }
 
         fetch.mockResponse(JSON.stringify(expectedResult))
@@ -70,6 +148,7 @@ describe('reserveAppointment', () => {
         expect(fetch).toHaveBeenCalledWith('/book-taxi-driver-knowledge-test/pencil-an-appointment', expect.anything())
     })
 })
+
 describe('formatAvailableAppointments', () => {
     it('it should format available appointents', async () => {
         // Arrange
