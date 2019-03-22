@@ -66,7 +66,7 @@ export const AboutYourself = ({ context, history }) => {
                     label='Next step' 
                 />
             </form>
-            <Anchor label='Back' history={history} />
+            <Anchor label='Previous' history={history} />
         </Fragment>
     )
 }

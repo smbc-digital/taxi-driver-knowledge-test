@@ -83,7 +83,7 @@ export class SelectAppointment extends Component {
 					/>
 					<Button isValid={testDate.isValid} label="Next step" isLoading={isLoading}/>
 				</form>
-				<Anchor label="Back" history={history} />
+				<Anchor label='Previous' history={history} />
 			</Fragment>
 		)
 	}
