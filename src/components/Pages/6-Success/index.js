@@ -25,7 +25,7 @@ export class Success extends Component {
 					<p className="h2">Thank you for booking to take the taxi driver knowledge test</p>
 				</section>
 				<section className="body-container">
-					<p>Your appointment to take the hackney carriage taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('hh:mmA')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd Do MMMM YYYY')}</b> </p>
+					<p>Your appointment to take the hackney carriage taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('h:mmA')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</b> </p>
                     <p>We&#39;ve sent you a confirmation email including this information.</p>
 					<h2>What happens next</h2>
 					<p>
@@ -35,12 +35,9 @@ export class Success extends Component {
                         Please arrive 15 minutes early for your test to allow time for ID checks. If you&#39;re late you&#39;ll be turned away.
 					</p>
                     <p><strong>What you need to bring to your test</strong></p>
-                    <p>
-                        You&#39;ll need to bring the following with you to the test:
-					</p>
 					<p>
 						<ul>
-							<li>utility bill or bank statement from the last 3 months with your current name and address on</li>
+							<li>utility bill or bank statement from the last 3 months showing your current name and address</li>
 							<li>passport or other suitable evidence of your right to work in the UK</li>
 							<li>DVLA photocard driving licence showing your current address</li>
 						</ul>
@@ -48,7 +45,7 @@ export class Success extends Component {
 					<p>
                         <strong>Manage your test online</strong>
                     </p>
-                    <p>You can change your test date and time online up until midday the day before by using My Account.</p>
+                    <p>You can use My Account to change the date and time of your test online up until midday the day before your test.</p>
 					<p>
 						<a className="button-primary" href="https://myaccount.stockport.gov.uk/">
                         Go to My Account
