@@ -40,6 +40,7 @@ export class Success extends Component {
 							<li>utility bill or bank statement from the last 3 months showing your current name and address</li>
 							<li>passport or other suitable evidence of your right to work in the UK</li>
 							<li>DVLA photocard driving licence showing your current address</li>
+							<li>recent passport size photograph</li>
 						</ul>
 					</p>
 					<p>
