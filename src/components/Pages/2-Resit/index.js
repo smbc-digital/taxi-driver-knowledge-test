@@ -3,47 +3,10 @@ import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import { RadioInputsContainer, DatePicker, Button, Anchor } from 'smbc-react-components'
 import { getPageRoute } from '../../../helpers/pagehelper'
-// import moment from 'moment'
 
 export const Resit = ({ context, history })  => {
-	// const isOutsideRange = (date) => {
-	// 	return moment(date).format('YYYY-MM-DD') > moment().format('YYYY-MM-DD') ? true : false
-	// }
 
-	const options = [
-        {
-            label: 'Yes',
-            id: 'yes',
-            name: 'isResit',
-			value: 'false'
-        },
-        {
-            label: 'No',
-            id: 'no',
-            name: 'isResit',
-            value: 'true',
-			renderIfChecked: () => (
-                context.isResit.value &&
-                <DatePicker
-					label='Select the date of your last test'
-					description='You&#39;ll be able to choose a new test 4 weeks from this date'
-                    id='previous-test-date'
-                    enableH2={false}
-                    name={'previousTestDate'}
-                    value={context.previousTestDate.value}
-					onChange={context.onChange}
-					validationMessage={'Check the date and try again'}
-					isOutsideRange={context.isOutsideRange}
-                />
-            )
-        }
-	]
-	
 	const onSubmit = (event) => {
-		// if(!context.isResit.value) {
-		// 	context.previousTestDate.value = ''
-		// 	context.previousTestDate.isValid = false
-		// }
 		event.preventDefault()
 		history.push(getPageRoute(3))
 	}
@@ -54,18 +17,36 @@ export const Resit = ({ context, history })  => {
 				<h1>{context.formHeader}</h1>
 				<h2>Is this the first time you&#39;ll be taking the taxi driver knowledge test?</h2>
 				<RadioInputsContainer
-					onChange={(event, isValid) => context.onChange({
-						target: {
-							name: event.target.name,
-							value: event.target.value === 'true' ? true : false
-						}
+					onChange={context.onChange}
+					options={[{
+						label: 'yes',
+						id: 'yes',
+						name: 'isResit',
+						value: 'false'
 					},
-					isValid)}
-					options={options}
+					{
+						label: 'no',
+						id: 'no',
+						name: 'isResit',
+						value: 'true',
+						renderIfChecked: () => (
+							context.isResit.value === 'true' &&
+							<DatePicker
+								label='Select the date of your last test'
+								description='You&#39;ll be able to choose a new test 4 weeks from this date'
+								id='previous-test-date'
+								enableH2={false}
+								name={'previousTestDate'}
+								value={context.previousTestDate.value}
+								onChange={context.onChange}
+								validationMessage={'Check the date and try again'}
+								isOutsideRange={context.isOutsideRange}
+							/>
+						)
+			}]}
 					value={context.isResit.value}
-					displayHeading={false}
 				/>
-				<Button label="Next step" isValid={context.isResit.isValid && (!context.isResit.value || context.previousTestDate.isValid)} />
+				<Button label="Next step" isValid={context.isResit.isValid} />
 			</form>
 			<Anchor label='Previous' history={history} />
 		</Fragment>
