@@ -19,13 +19,13 @@ export const Resit = ({ context, history })  => {
 				<RadioInputsContainer
 					onChange={context.onChange}
 					options={[{
-						label: 'Yes',
+						label: 'yes',
 						id: 'yes',
 						name: 'isResit',
 						value: 'false'
 					},
 					{
-						label: 'No',
+						label: 'no',
 						id: 'no',
 						name: 'isResit',
 						value: 'true',
@@ -46,7 +46,7 @@ export const Resit = ({ context, history })  => {
 			}]}
 					value={context.isResit.value}
 				/>
-				<Button label="Next step" isValid={context.isResit.isValid  && (context.isResit.value == 'false' || context.previousTestDate.isValid)} />
+				<Button label="Next step" isValid={context.isResit.isValid} />
 			</form>
 			<Anchor label='Previous' history={history} />
 		</Fragment>

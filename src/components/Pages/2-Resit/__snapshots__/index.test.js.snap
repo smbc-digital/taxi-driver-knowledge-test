@@ -26,7 +26,7 @@ Array [
         <label
           htmlFor="yes"
         >
-          Yes
+          yes
         </label>
       </div>
       <div
@@ -45,7 +45,7 @@ Array [
         <label
           htmlFor="no"
         >
-          No
+          no
         </label>
       </div>
       <div
@@ -108,7 +108,7 @@ Array [
     </fieldset>
     <button
       className="button-primary"
-      disabled={true}
+      disabled={false}
       id={undefined}
       onClick={undefined}
       type="submit"
