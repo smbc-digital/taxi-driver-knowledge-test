@@ -46,7 +46,7 @@ export const Resit = ({ context, history })  => {
 			}]}
 					value={context.isResit.value}
 				/>
-				<Button label="Next step" isValid={context.isResit.isValid && (!context.isResit.value || context.previousTestDate.isValid)} />
+				<Button label="Next step" isValid={context.isResit.value === 'true' ? context.previousTestDate.isValid : context.isResit.isValid} />
 			</form>
 			<Anchor label='Previous' history={history} />
 		</Fragment>
