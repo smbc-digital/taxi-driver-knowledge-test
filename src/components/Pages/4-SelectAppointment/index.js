@@ -10,17 +10,17 @@ export class SelectAppointment extends Component {
 	constructor(props) {
 		super(props)
 
-		const earliestNewTestDate = !this.props.context.isResit.value ? moment() : moment(this.props.context.previousTestDate.value).add(4, 'weeks')
-
+		const earliestNewTestDate = this.props.context.isResit.value != 'true' ? moment() : moment(this.props.context.previousTestDate.value).add(4, 'weeks')
+		
 		this.state = {
 			appointments: [],
 			isLoading: false,
-			dateToSearchFrom: earliestNewTestDate < moment() ? moment() : earliestNewTestDate
+			dateToSearchFrom: moment().isAfter(earliestNewTestDate) ? moment() : earliestNewTestDate
 		}
 	}
 
-	componentDidMount = async () => {
-		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).format(), moment(this.state.dateToSearchFrom).add(18, 'weeks').format())
+	componentDidMount = async () => {		
+		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).toISOString(), moment(this.state.dateToSearchFrom).add(18, 'weeks').toISOString())
 
 		this.setState({appointments: result.appointments})
 	}

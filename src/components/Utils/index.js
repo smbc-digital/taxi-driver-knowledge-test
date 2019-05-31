@@ -22,9 +22,9 @@ export const formatAvailableAppointments = appointments => {
 
 export const getAvailableAppointments = async (isResit, from, to) => {
 	const request = {
-		from,
-		to,
-		isResit: isResit
+		 from: from,
+		 to: to,
+		 isResit: isResit
 	}
 
 	try {
