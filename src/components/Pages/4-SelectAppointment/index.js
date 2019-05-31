@@ -21,7 +21,6 @@ export class SelectAppointment extends Component {
 
 	componentDidMount = async () => {		
 		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).toISOString(), moment(this.state.dateToSearchFrom).add(18, 'weeks').toISOString())
-
 		this.setState({appointments: result.appointments})
 	}
 
