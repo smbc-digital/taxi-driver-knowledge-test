@@ -31,7 +31,7 @@ exports[`FailedBooking snapshot should render correctly 1`] = `
       className="button-primary no-margin-bottom"
       href="https://www.stockport.gov.uk/"
     >
-      Go back to the homepage
+      Go back to the hompage
     </a>
   </p>
 </div>

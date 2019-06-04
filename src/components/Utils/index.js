@@ -54,7 +54,7 @@ export const getAvailableAppointments = async (isResit, from, to) => {
 export const reserveAppointment = async ({isResit, testDate, firstName, lastName, phoneNumber, emailAddress, address, testType, previousTestDate}) => {
 	try {
 		const request = {
-			testDate, 
+			testDate,
 			isResit,
 			name: `${firstName.value} ${lastName.value}`,
 			address: address.value.selectedAddress || `${address.value.addressLine1} ${address.value.addressLine2} ${address.value.town} ${address.value.postcode}`,
@@ -79,7 +79,7 @@ export const reserveAppointment = async ({isResit, testDate, firstName, lastName
 			status: result.status,
 			bookingId: responseObject
 		}
-	} 
+	}
 	catch (error) {
 		return {
 			status: 500
@@ -87,7 +87,7 @@ export const reserveAppointment = async ({isResit, testDate, firstName, lastName
 	}
 }
 
-export const getPaymentUrl = async (bookingId, testDate) => {
+export const getPaymentUrl = async (bookingId, testDate, testType) => {
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/generate-payment-url', {
 				method: 'POST',
@@ -96,7 +96,7 @@ export const getPaymentUrl = async (bookingId, testDate) => {
 					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify({
-					bookingId, testDate
+					bookingId, testDate, testType
 				})
 			})
 

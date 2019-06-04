@@ -2,7 +2,7 @@ import 'isomorphic-fetch'
 import React, { Component } from 'react'
 import { Button, Anchor } from 'smbc-react-components'
 import PropTypes from 'prop-types'
-import { getPaymentUrl } from '../../Utils' 
+import { getPaymentUrl } from '../../Utils'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import withContext from '../../WithContext'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -16,7 +16,7 @@ export class PaymentSummary extends Component {
             recaptchaValid: false
 		}
     }
-    
+
     onChangeRecaptcha = value => {
 		this.setState({
 			recaptchaValid: value ? true : false
@@ -26,9 +26,9 @@ export class PaymentSummary extends Component {
     onSubmit = async (event) => {
         event.preventDefault()
         const { context, history } = this.props
-        
+
         this.setState({ isLoading: true })
-        let rawResponse = await getPaymentUrl(context.bookingId, context.testDate.value)
+        let rawResponse = await getPaymentUrl(context.bookingId, context.testDate.value, context.testType.value)
         if(rawResponse.status === 200){
             window.location.assign(rawResponse.url)
         } else{
@@ -39,7 +39,7 @@ export class PaymentSummary extends Component {
 render() {
     const { isLoading, recaptchaValid } = this.state
     const { context : {displayRecaptcha, formHeader, testType, testDate }, history } = this.props
-    return ( 
+    return (
         <form onSubmit={this.onSubmit}>
             <h1>{formHeader}</h1>
             <h2>Your booking summary</h2>
@@ -55,17 +55,17 @@ render() {
 							/>
 						</div>
 					)}
-            
-            <Button 
+
+            <Button
                 id='continue-to-payment'
-                label='Continue to payment' 
-                isValid={recaptchaValid || !displayRecaptcha } 
+                label='Continue to payment'
+                isValid={recaptchaValid || !displayRecaptcha }
                 isLoading={isLoading}
             />
             <Anchor label='Previous' history={history} />
         </form>
-        
-     )
+
+    )
     }
 }
 

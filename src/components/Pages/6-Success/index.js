@@ -8,7 +8,7 @@ import showBreadCrumbs from '../../../helpers/breadcrumbHelper'
 export class Success extends Component {
 	constructor(props) {
 		super(props)
-		props.history.block()	
+		props.history.block()
 	}
 
 	componentDidMount = () => {
@@ -16,7 +16,7 @@ export class Success extends Component {
 	}
 
 	render() {
-		const { testDate } = queryString.parse(location.search)
+		const { testDate, testType } = queryString.parse(location.search)
 
 		return (
 			<Fragment>
@@ -25,7 +25,7 @@ export class Success extends Component {
 					<p className="h2">Thank you for booking to take the taxi driver knowledge test</p>
 				</section>
 				<section className="body-container">
-					<p>Your appointment to take the hackney carriage taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('h:mmA')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</b> </p>
+					<p>Your appointment to take the {testType} taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('h:mmA')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</b> </p>
                     <p>We&#39;ve sent you a confirmation email including this information.</p>
 					<h2>What happens next</h2>
 					<p>
