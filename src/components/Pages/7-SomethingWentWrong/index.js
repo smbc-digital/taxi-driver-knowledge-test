@@ -5,7 +5,7 @@ import withContext from '../../WithContext'
 import { ErrorPage } from 'smbc-react-components'
 
 export const SomethingWentWrong = ({ history, location }) => {
-    const { paymentUrl } = queryString.parse(location.search)
+    const { paymenturl } = queryString.parse(location.search)
 
     return (
         <ErrorPage
@@ -14,7 +14,7 @@ export const SomethingWentWrong = ({ history, location }) => {
             showSubtitle={false}
             links={[
                 {
-                    location: paymentUrl,
+                    location: paymenturl,
                     text: 'Continue with the booking'
                 },
                 {
