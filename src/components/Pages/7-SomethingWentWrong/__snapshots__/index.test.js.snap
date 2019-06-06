@@ -1,39 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SomethingWentWrong snapshot should render correctly 1`] = `
-<div
-  className="system-failure"
->
-  <h1>
-    We're sorry, the payment was unsuccessful
-  </h1>
+<form>
   <div
-    className="icon"
+    className="ineligible-warning"
   >
-    <span
-      aria-hidden="true"
-      className="fa fa-5x fa-exclamation"
-    />
-  </div>
-  <h2 />
-  <p>
-    Please try again if you want to continue with the booking.
-  </p>
-  <p>
-    <a
-      className="button-primary no-margin-bottom"
-      href={undefined}
+    <div
+      className="header-container"
     >
-      Continue with the booking
-    </a>
-  </p>
-  <p>
+      <div>
+        <i
+          aria-hidden="true"
+          className="fa fa-exclamation"
+        />
+      </div>
+      <h1>
+         We're sorry, the payment was unsuccessful
+      </h1>
+    </div>
+    <p
+      className="no-margin-bottom"
+    >
+      Something went wrong. Please try again if you want to continue with the order.
+    </p>
     <a
-      className="button-secondary no-margin-bottom"
-      href="https://www.stockport.gov.uk"
+      className="button-primary"
+      href="test"
+    >
+      Continue with the order
+    </a>
+    <a
+      className="button-secondary anchor-as-block"
+      href="https://www.stockport.gov.uk/"
     >
       Go to the homepage
     </a>
-  </p>
-</div>
+  </div>
+</form>
 `;
