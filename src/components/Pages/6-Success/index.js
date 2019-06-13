@@ -16,7 +16,7 @@ export class Success extends Component {
 	}
 
 	render() {
-		const { testDate, testType } = queryString.parse(location.search)
+		const { testDate, testType, receiptNumber } = queryString.parse(location.search)
 
 		return (
 			<Fragment>
@@ -26,7 +26,10 @@ export class Success extends Component {
 				</section>
 				<section className="body-container">
 					<p>Your appointment to take the {testType} taxi driver knowledge test is at <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('h:mma')}</b> on <b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</b> </p>
+					<p>Your receipt number is <strong>{receiptNumber}</strong>.</p>
                     <p>We&#39;ve sent you a confirmation email including this information.</p>
+					
+
 					<h2>What happens next</h2>
 					<p>
 						On the day of your test you&#39;ll need to go to the Town Hall, Edward Street, Stockport, SK1 3XE and check in at reception.
