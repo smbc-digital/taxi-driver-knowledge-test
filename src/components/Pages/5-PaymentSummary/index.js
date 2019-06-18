@@ -25,10 +25,10 @@ export class PaymentSummary extends Component {
 
     onSubmit = async (event) => {
         event.preventDefault()
-        const { context, history } = this.props
-
+        const { context : {emailAddress, testType, testDate, bookingId}, history } = this.props
+   
         this.setState({ isLoading: true })
-        let rawResponse = await getPaymentUrl(context.bookingId, context.testDate.value, context.testType.value)
+        let rawResponse = await getPaymentUrl(bookingId, testDate.value, testType.value, emailAddress.value)
         if(rawResponse.status === 200){
             window.location.assign(rawResponse.url)
         } else{
