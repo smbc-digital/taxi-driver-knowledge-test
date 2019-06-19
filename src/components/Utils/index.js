@@ -87,7 +87,7 @@ export const reserveAppointment = async ({isResit, testDate, firstName, lastName
 	}
 }
 
-export const getPaymentUrl = async (bookingId, testDate, testType) => {
+export const getPaymentUrl = async (bookingId, testDate, testType, emailAddress) => {
 	try {
 		const result = await fetch('/book-taxi-driver-knowledge-test/generate-payment-url', {
 				method: 'POST',
@@ -96,7 +96,7 @@ export const getPaymentUrl = async (bookingId, testDate, testType) => {
 					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify({
-					bookingId, testDate, testType
+					bookingId, testDate, testType, emailAddress
 				})
 			})
 
