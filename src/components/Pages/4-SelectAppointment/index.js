@@ -11,7 +11,7 @@ export class SelectAppointment extends Component {
 		super(props)
 
 		const earliestNewTestDate = this.props.context.isResit.value != 'true' ? moment() : moment(this.props.context.previousTestDate.value).add(4, 'weeks')
-		
+
 		this.state = {
 			appointments: [],
 			isLoading: false,
@@ -19,7 +19,7 @@ export class SelectAppointment extends Component {
 		}
 	}
 
-	componentDidMount = async () => {		
+	componentDidMount = async () => {
 		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).toISOString(), moment(this.state.dateToSearchFrom).add(18, 'weeks').toISOString())
 		this.setState({appointments: result.appointments})
 	}
@@ -27,23 +27,23 @@ export class SelectAppointment extends Component {
 	onSubmit = async event => {
 		event.preventDefault()
 		this.setState({ isLoading: true })
-		
+
 		const { context, history: { push } } = this.props
-		
+
 		const reserveRequest = {
-			isResit: context.isResit.value, 
+			isResit: context.isResit.value,
 			testDate: moment(context.testDate.value).format(),
-			firstName: context.firstName, 
-			lastName: context.lastName, 
-			phoneNumber: context.phoneNumber, 
-			emailAddress: context.emailAddress, 
+			firstName: context.firstName,
+			lastName: context.lastName,
+			phoneNumber: context.phoneNumber,
+			emailAddress: context.emailAddress,
 			address: context.address,
 			testType: context.testType,
 			previousTestDate: context.previousTestDate
 		}
 
 		const { bookingId, status } = await reserveAppointment(reserveRequest)
-		
+
 		context.setBookingId(bookingId)
 
 		if(status === 200) {
@@ -65,6 +65,22 @@ export class SelectAppointment extends Component {
 	render() {
 		const { context: {formHeader, onChange, testDate}, history } = this.props
 		const { appointments, isLoading } = this.state
+
+		if (appointments.length === 0 || appointments === undefined)
+		{
+			return (
+				<Fragment>
+					<h1>{formHeader}</h1>
+					<AlertForm
+						level="information"
+						content="There are currently no online appointments available. Please email <a href='mailto:taxi.licensing@stockport.gov.uk'>taxi.licensing@stockport.gov.uk</a> to book your test"
+					/>
+					<a className="button-primary" href="https://www.stockport.gov.uk">Return to homepage</a>
+					<Anchor label='Previous' history={history} />
+				</Fragment>
+			)
+		}
+
 		return (
 			<Fragment>
 				<form onSubmit={this.onSubmit}>
@@ -80,7 +96,7 @@ export class SelectAppointment extends Component {
 						onChange={onChange}
 						onClick={this.onClick}
 					/>
-					<Button isValid={testDate.isValid} label="Next step" isLoading={isLoading}/>
+				<Button isValid={testDate.isValid} label="Next step" isLoading={isLoading}/>
 				</form>
 				<Anchor label='Previous' history={history} />
 			</Fragment>

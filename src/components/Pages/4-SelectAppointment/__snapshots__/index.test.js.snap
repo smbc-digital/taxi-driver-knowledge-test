@@ -2,53 +2,29 @@
 
 exports[`SelectAppointment snapshot renders correctly with spinner while there are no appointments 1`] = `
 Array [
-  <form
-    onSubmit={[Function]}
-  >
-    <h1 />
-    <div>
-      <section
-        className="alert-information-form"
-      >
-        <span
-          className="fa fa-info-circle"
-        />
-        <p
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "The test usually takes place on a Wednesday. There may be times when we run the test on other days, these will be displayed below.",
-            }
-          }
-        />
-      </section>
-    </div>
-    <h2>
-      Select an appointment
-    </h2>
-    <div
-      className="page-loading-spinner"
-    />
-    <a
-      className="anchor-with-icon"
-      href="#"
-      onClick={[Function]}
+  <h1 />,
+  <div>
+    <section
+      className="alert-information-form"
     >
-       
-      <i
-        className="fa fa-plus-square fa-lg"
+      <span
+        className="fa fa-info-circle"
       />
-      Show more dates
-    </a>
-    <button
-      className="button-primary"
-      disabled={true}
-      id={undefined}
-      onClick={undefined}
-      type="submit"
-    >
-      Next step
-    </button>
-  </form>,
+      <p
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "There are currently no online appointments available. Please email <a href='mailto:taxi.licensing@stockport.gov.uk'>taxi.licensing@stockport.gov.uk</a> to book your test",
+          }
+        }
+      />
+    </section>
+  </div>,
+  <a
+    className="button-primary"
+    href="https://www.stockport.gov.uk"
+  >
+    Return to homepage
+  </a>,
   <p>
     <a
       href="#"

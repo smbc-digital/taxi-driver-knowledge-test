@@ -28,11 +28,24 @@ describe('SelectAppointment', () => {
 			setBookingId: jest.fn()
 		}
 
+		const now = moment()
+		const future = moment().add(13, 'weeks')
+
+		const appointments = [
+			{
+				date: now,
+				times: []
+			},
+			{
+				date: future
+			}
+		]
+
 		const history = { push: jest.fn() }
 		window.location.assign = jest.fn()
 		submitUtils.reserveAppointment = jest.fn().mockReturnValue({ status: 200, bookingId: 'any'} )
 		const wrapper = mount(<SelectAppointment context={data} history={history} />)
-
+		wrapper.setState({appointments: appointments})
 		//Act
 		await wrapper.find('form').simulate('submit')
 
@@ -41,6 +54,19 @@ describe('SelectAppointment', () => {
 	})
 
 	it('should call push on submit to page 7 when status is not 200', async () => {
+
+		const now = moment()
+		const future = moment().add(13, 'weeks')
+
+		const appointments = [
+			{
+				date: now,
+				times: []
+			},
+			{
+				date: future
+			}
+		]
 		// Arrange
 		const data = {
 			isResit: {
@@ -55,18 +81,23 @@ describe('SelectAppointment', () => {
 				value: '25/04/2019',
 				isValid: true
 			},
+			appointments: [
+				{
+					date: now,
+					times: []
+				}],
 			setBookingId: jest.fn()
 		}
+
+
 
 		const history = { push: jest.fn() }
 		window.location.assign = jest.fn()
 		submitUtils.reserveAppointment = jest.fn().mockReturnValue({ status: 400, bookingId: 'any'} )
-		const wrapper = mount(<SelectAppointment context={data} history={history} />)
-
+		const wrapper = mount(<SelectAppointment context={data} history={history}  appointments ={appointments}/>)
+		wrapper.setState({appointments: appointments})
 		//Act
-		await wrapper.find('form').simulate('submit')
-
-		//Assert
+		await wrapper.find('form').simulate('submit')		//Assert
 		expect(history.push).toHaveBeenCalledWith(getPageRoute(7))
 	})
 

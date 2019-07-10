@@ -15,7 +15,7 @@ Array [
         role="radiogroup"
       >
         <input
-          defaultChecked={false}
+          checked={false}
           disabled={undefined}
           id="yes"
           name="isResit"
@@ -34,7 +34,7 @@ Array [
         role="radiogroup"
       >
         <input
-          defaultChecked={true}
+          checked={true}
           disabled={undefined}
           id="no"
           name="isResit"

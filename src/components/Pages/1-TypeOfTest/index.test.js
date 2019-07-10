@@ -18,14 +18,12 @@ describe('TypeOfTest', () => {
 
         //Act
         wrapper.find('form').simulate('submit')
-
-
         //Assert
         expect(history.push).toHaveBeenCalledWith(getPageRoute(2))
     })
 
     describe('snapshot', () => {
-		it('should render correctly',() => { 
+		it('should render correctly',() => {
 			// Arrange
 			const data = {
                 testType: {
@@ -33,12 +31,12 @@ describe('TypeOfTest', () => {
                     isValid: true
                 }
 			}
-		
+
 			// Act
 			const tree = renderer
 			.create(<TypeOfTest context={data} />)
 			.toJSON()
-		
+
 			// Assert
 			expect(tree).toMatchSnapshot()
 		})

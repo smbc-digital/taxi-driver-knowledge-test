@@ -14,7 +14,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
       role="radiogroup"
     >
       <input
-        defaultChecked={true}
+        checked={true}
         disabled={undefined}
         id="private"
         name="testType"
@@ -33,7 +33,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
       role="radiogroup"
     >
       <input
-        defaultChecked={false}
+        checked={false}
         disabled={undefined}
         id="hackney"
         name="testType"
@@ -52,7 +52,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
       role="radiogroup"
     >
       <input
-        defaultChecked={false}
+        checked={false}
         disabled={undefined}
         id="executive"
         name="testType"
@@ -71,7 +71,7 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
       role="radiogroup"
     >
       <input
-        defaultChecked={false}
+        checked={false}
         disabled={undefined}
         id="assisted"
         name="testType"
