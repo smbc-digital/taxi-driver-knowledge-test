@@ -66,7 +66,7 @@ export class SelectAppointment extends Component {
 		const { context: {formHeader, onChange, testDate}, history } = this.props
 		const { appointments, isLoading } = this.state
 
-		if (appointments.length === 0 || appointments === undefined)
+		if ((appointments.length === 0 || appointments === undefined) && isLoading === false)
 		{
 			return (
 				<Fragment>
