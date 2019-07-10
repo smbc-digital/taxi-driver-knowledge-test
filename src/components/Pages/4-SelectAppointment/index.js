@@ -66,7 +66,7 @@ export class SelectAppointment extends Component {
 		const { context: {formHeader, onChange, testDate}, history } = this.props
 		const { appointments, isLoading } = this.state
 
-		if ((appointments.length === 0 || appointments === undefined) && isLoading === false)
+		if ((appointments.length === 0 || appointments === undefined) && (isLoading === false || isLoading == undefined))
 		{
 			return (
 				<Fragment>
@@ -83,6 +83,7 @@ export class SelectAppointment extends Component {
 
 		return (
 			<Fragment>
+
 				<form onSubmit={this.onSubmit}>
 					<h1>{formHeader}</h1>
 					<AlertForm
