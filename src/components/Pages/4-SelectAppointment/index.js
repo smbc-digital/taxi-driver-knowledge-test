@@ -15,6 +15,7 @@ export class SelectAppointment extends Component {
 		this.state = {
 			appointments: [],
 			isLoading: false,
+			noAppointments: false,
 			dateToSearchFrom: moment().isAfter(earliestNewTestDate) ? moment() : earliestNewTestDate
 		}
 	}
@@ -22,6 +23,9 @@ export class SelectAppointment extends Component {
 	componentDidMount = async () => {
 		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).toISOString(), moment(this.state.dateToSearchFrom).add(18, 'weeks').toISOString())
 		this.setState({appointments: result.appointments})
+		if(appointments.length == 0 || appointments === undefined){
+			this.setState({noAppointments:true})
+		}
 	}
 
 	onSubmit = async event => {
@@ -64,9 +68,9 @@ export class SelectAppointment extends Component {
 
 	render() {
 		const { context: {formHeader, onChange, testDate}, history } = this.props
-		const { appointments, isLoading } = this.state
+		const { appointments, isLoading, noAppointments } = this.state
 
-		if ((appointments.length === 0 || appointments === undefined) && (isLoading === false || isLoading == undefined))
+		if (noAppointments === true)
 		{
 			return (
 				<Fragment>
@@ -83,7 +87,6 @@ export class SelectAppointment extends Component {
 
 		return (
 			<Fragment>
-
 				<form onSubmit={this.onSubmit}>
 					<h1>{formHeader}</h1>
 					<AlertForm
