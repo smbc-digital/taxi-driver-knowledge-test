@@ -74,13 +74,14 @@ export class SelectAppointment extends Component {
 		{
 			return (
 				<Fragment>
-					<h1>{formHeader}</h1>
-					<AlertForm
-						level="information"
-						content="There are currently no online appointments available. Please email <a href='mailto:taxi.licensing@stockport.gov.uk'>taxi.licensing@stockport.gov.uk</a> to book your test"
-					/>
-					<a className="button-primary" href="https://www.stockport.gov.uk">Return to homepage</a>
-					<Anchor label='Previous' history={history} />
+					<form>
+						<h1>{formHeader}</h1>
+						<AlertForm
+							level="information"
+							content="There are currently no online appointments available. Please email <a href='mailto:taxi.licensing@stockport.gov.uk'>taxi.licensing@stockport.gov.uk</a> to book your test"
+						/>
+						<a className="button-primary" href="https://www.stockport.gov.uk">Return to homepage</a>
+					</form>
 				</Fragment>
 			)
 		}
