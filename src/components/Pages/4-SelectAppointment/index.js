@@ -74,7 +74,7 @@ export class SelectAppointment extends Component {
 		{
 			return (
 				<Fragment>
-					<form>
+					<form id="no-appointments">
 						<h1>{formHeader}</h1>
 						<AlertForm
 							level="information"
@@ -88,7 +88,7 @@ export class SelectAppointment extends Component {
 
 		return (
 			<Fragment>
-				<form onSubmit={this.onSubmit}>
+				<form onSubmit={this.onSubmit} id="appointments">
 					<h1>{formHeader}</h1>
 					<AlertForm
 						level="information"

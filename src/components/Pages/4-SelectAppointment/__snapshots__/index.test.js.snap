@@ -3,6 +3,7 @@
 exports[`SelectAppointment snapshot renders correctly with spinner while there are no appointments 1`] = `
 Array [
   <form
+    id="appointments"
     onSubmit={[Function]}
   >
     <h1 />
