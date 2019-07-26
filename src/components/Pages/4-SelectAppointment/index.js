@@ -57,10 +57,8 @@ export class SelectAppointment extends Component {
 		}
 	}
 
-	filterAppointments = appointments => {
-		console.log(this.state.dateToSearchFrom)
-		console.log(moment(this.state.dateToSearchFrom))
-		return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY', true).isBefore(moment(this.state.dateToSearchFrom).add(12, 'weeks')))
+	filterAppointments = appointments => {		
+		return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY').isBefore(moment(this.state.dateToSearchFrom).add(12, 'weeks')))
 	}
 
 	onClick = event => {
