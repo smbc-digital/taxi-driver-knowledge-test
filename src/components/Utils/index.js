@@ -7,9 +7,7 @@ export const formatAvailableAppointments = appointments => {
 			date: appointment.date,
 			displayDate: moment(appointment.date, 'DD/MM/YYYY').format('dddd D MMMM YYYY'),
 			times: appointment.times.map(time => {
-				console.log(time)
 				const formattedDate = moment(appointment.date, 'DD/MM/YYYY').format('DD/MM/YYYY')
-				console.log(moment(`${formattedDate} ${time.startTime}`, 'DD/MM/YYYY HH:mm:ss'))
 				const value = moment(`${formattedDate} ${time.startTime}`, 'DD/MM/YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
 				return {
 					startTime: time.startTime,
