@@ -4,6 +4,7 @@ import withContext from '../../WithContext'
 import queryString from 'query-string'
 import moment from 'moment'
 import showBreadCrumbs from '../../../helpers/breadcrumbHelper'
+import showAToZFooter from '../../../helpers/aToZFooterHelper'
 
 export class Success extends Component {
 	constructor(props) {
@@ -13,6 +14,7 @@ export class Success extends Component {
 
 	componentDidMount = () => {
 		showBreadCrumbs(true)
+		showAToZFooter(true)
 	}
 
 	render() {
