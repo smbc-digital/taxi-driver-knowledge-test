@@ -1,5 +1,5 @@
 import React from 'react'
-import {ScrollToTop} from './index'
+import { ScrollToTop } from './index'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
@@ -10,41 +10,41 @@ describe('ScrollToTop', () => {
         it('should scroll the window when the url changes', () => {
             // Arrange
             const props = {
-                location: '/test'
+                location: { pathname: '/test' }
             }
 
             global.scrollTo = jest.fn()
 
             const wrapper = mount(
-				<ScrollToTop {...props}>
+                <ScrollToTop {...props}>
                     <h1>test</h1>
                 </ScrollToTop>
             )
 
             // Act
-            wrapper.instance().componentDidUpdate({location: '/test2'})
-            
+            wrapper.instance().componentDidUpdate({ location: { pathname: '/test2' } })
+
             // Assert
-            expect(global.scrollTo).toHaveBeenCalledWith(0,0)
+            expect(global.scrollTo).toHaveBeenCalledWith(0, 0)
         })
 
         it('should not scroll the window when the url hasn\'t changed', () => {
             // Arrange
             const props = {
-                location: '/test'
+                location: { pathname: '/test' }
             }
 
             global.scrollTo = jest.fn()
 
             const wrapper = mount(
-				<ScrollToTop {...props}>
+                <ScrollToTop {...props}>
                     <h1>test</h1>
                 </ScrollToTop>
             )
 
             // Act
-            wrapper.instance().componentDidUpdate({location: '/test'})
-            
+            wrapper.instance().componentDidUpdate(props)
+
             // Assert
             expect(global.scrollTo).not.toHaveBeenCalled()
         })

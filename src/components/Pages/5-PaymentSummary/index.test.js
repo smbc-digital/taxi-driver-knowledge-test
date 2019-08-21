@@ -5,6 +5,7 @@ import { getPageRoute } from '../../../helpers/pagehelper'
 import * as submitUtils from '../../Utils'
 import { PaymentSummary } from './index'
 import renderer from 'react-test-renderer'
+import moment from 'moment-timezone'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -18,7 +19,7 @@ describe('PaymentSummary', () => {
 		const url = 'http://www.test.url/paymentTest'
 		const data = {
 			testDate: {
-				value: '26/02/2019',
+				value: moment('26/02/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			testType: {
@@ -48,7 +49,7 @@ describe('PaymentSummary', () => {
 		const url = 'http://www.test.url/paymentTest'
 		const data = {
 			testDate: {
-				value: '26/02/2019',
+				value: moment('26/02/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			testType: {
@@ -79,7 +80,7 @@ describe('PaymentSummary', () => {
 		const data = {
 			displayRecaptcha: true,
 			testDate: {
-				value: '26/02/2019',
+				value: moment('26/02/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			testType: {
@@ -104,7 +105,7 @@ describe('PaymentSummary', () => {
 		const data = {
 			displayRecaptcha: true,
 			testDate: {
-				value: '26/02/2019',
+				value: moment('26/02/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			testType: {
@@ -129,7 +130,7 @@ describe('PaymentSummary', () => {
 		const data = {
 			displayRecaptcha: true,
 			testDate: {
-				value: '26/02/2019',
+				value: moment('26/02/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			testType: {
@@ -152,7 +153,7 @@ describe('PaymentSummary', () => {
 		it('renders correctly', () => {
 			const context = {
 				testDate: {
-					value: '2019-04-02T08:45:00',
+					value: moment('2019-04-02T08:45:00'),
 					isValid: true
 				},
 				testType: {

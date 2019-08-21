@@ -2,7 +2,7 @@ import { React, mount} from '../../../helpers/SetupTest'
 import { Resit } from './index'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import renderer from 'react-test-renderer'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 describe('Resit', () => {
     it('should call push on submit for not resit', () => {

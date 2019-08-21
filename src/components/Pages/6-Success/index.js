@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
 import withContext from '../../WithContext'
 import queryString from 'query-string'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import showBreadCrumbs from '../../../helpers/breadcrumbHelper'
 import showAToZFooter from '../../../helpers/aToZFooterHelper'
 
@@ -49,14 +49,12 @@ export class Success extends Component {
 					<p>
 						<strong>What you need to bring to your test</strong>
 					</p>
-					<p>
 						<ul>
 							<li>a recent passport sized photograph</li>
 							<li>EEA/UK photocard driving licence showing your current name and address</li>
 							<li>utility bill or bank statement, issued within the last 3 months, showing your current name and address</li>
 							<li>EEA/UK passport or other proof of right to work in the UK</li>
 						</ul>
-					</p>
 					<p>
 						<strong>Manage your test online</strong>
 					</p>

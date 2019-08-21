@@ -6,7 +6,7 @@ import { getPaymentUrl } from '../../Utils'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import withContext from '../../WithContext'
 import ReCAPTCHA from 'react-google-recaptcha'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 export class PaymentSummary extends Component {
 	constructor(props) {

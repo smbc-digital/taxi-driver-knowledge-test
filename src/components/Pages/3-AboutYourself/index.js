@@ -55,7 +55,7 @@ export const AboutYourself = ({ context, history }) => {
                     automaticDescription='If you don&#39;t have a Stockport postcode, enter your address manually below'
                     automaticTextLabel='Select the address below'
                     useVerintLookup={true}
-                    useStockportPostcode={true}
+                    useStockportPostcode={false}
                     enableHeading={false}
                     shouldDisplayManualSearch={false}
                     showManualOption={true}

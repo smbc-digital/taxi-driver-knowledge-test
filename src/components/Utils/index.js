@@ -1,5 +1,5 @@
 import 'isomorphic-fetch'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 export const formatAvailableAppointments = appointments => {
 	return appointments.map(appointment => {

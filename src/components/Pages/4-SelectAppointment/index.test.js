@@ -2,7 +2,7 @@ import { React, mount } from '../../../helpers/SetupTest'
 import { SelectAppointment } from './index'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import * as submitUtils from '../../Utils'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import renderer from 'react-test-renderer'
 
 describe('SelectAppointment', () => {
@@ -22,14 +22,14 @@ describe('SelectAppointment', () => {
 				isValid: false
 			},
 			testDate: {
-				value: '25/04/2019',
+				value: moment('25/04/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			setBookingId: jest.fn()
 		}
 
-		const now = moment()
-		const future = moment().add(13, 'weeks')
+		const now = moment().format('DD/MM/YYYY')
+		const future = moment().add(13, 'weeks').format('DD/MM/YYYY')
 
 		const appointments = [
 			{
@@ -78,7 +78,7 @@ describe('SelectAppointment', () => {
 				isValid: false
 			},
 			testDate: {
-				value: '25/04/2019',
+				value: moment('25/04/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
 			appointments: [
@@ -133,7 +133,7 @@ describe('SelectAppointment', () => {
 					isValid: false
 				},
 				testDate: {
-					value: '25/04/2019',
+					value: moment('25/04/2019', 'DD/MM/YYYY'),
 					isValid: true
 				},
 				setBookingId: jest.fn()
@@ -163,7 +163,7 @@ describe('SelectAppointment', () => {
 					isValid: false
 				},
 				testDate: {
-					value: '25/04/2019',
+					value: moment('25/04/2019', 'DD/MM/YYYY'),
 					isValid: true
 				},
 				setBookingId: jest.fn()

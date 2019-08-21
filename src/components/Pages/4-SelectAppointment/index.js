@@ -4,7 +4,7 @@ import withContext from '../../WithContext'
 import { getPageRoute } from '../../../helpers/pagehelper'
 import { AlertForm, SelectableButtonList, Button, Anchor } from 'smbc-react-components'
 import { reserveAppointment, getAvailableAppointments } from '../../Utils'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 export class SelectAppointment extends Component {
 	constructor(props) {
