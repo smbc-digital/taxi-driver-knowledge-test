@@ -21,7 +21,7 @@ export class SelectAppointment extends Component {
 	}
 
 	componentDidMount = async () => {
-		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).toISOString(), moment(this.state.dateToSearchFrom).add(18, 'weeks').toISOString())
+		const result = await getAvailableAppointments(this.props.context.isResit.value, moment(this.state.dateToSearchFrom).toISOString(), moment(this.state.dateToSearchFrom).add(26, 'weeks').toISOString())
 		this.setState({appointments: result.appointments})
 		if(result.appointments.length == 0 || result.appointments === undefined){
 			this.setState({noAppointments:true})
@@ -58,7 +58,7 @@ export class SelectAppointment extends Component {
 	}
 
 	filterAppointments = appointments => {		
-		return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY').isBefore(moment(this.state.dateToSearchFrom).add(12, 'weeks')))
+		return appointments.filter(_ => moment(_.date, 'DD/MM/YYYY').isBefore(moment(this.state.dateToSearchFrom).add(18, 'weeks')))
 	}
 
 	onClick = event => {

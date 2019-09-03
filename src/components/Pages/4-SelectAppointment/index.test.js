@@ -29,7 +29,7 @@ describe('SelectAppointment', () => {
 		}
 
 		const now = moment().format('DD/MM/YYYY')
-		const future = moment().add(13, 'weeks').format('DD/MM/YYYY')
+		const future = moment().add(19, 'weeks').format('DD/MM/YYYY')
 
 		const appointments = [
 			{
@@ -56,7 +56,7 @@ describe('SelectAppointment', () => {
 	it('should call push on submit to page 7 when status is not 200', async () => {
 
 		const now = moment()
-		const future = moment().add(13, 'weeks')
+		const future = moment().add(19, 'weeks')
 
 		const appointments = [
 			{
@@ -102,10 +102,10 @@ describe('SelectAppointment', () => {
 	})
 
 	describe('getAppointments', () => {
-		it('should set appointments to 12 week list when showMore is true', () => {
+		it('should set appointments to 18 week list when showMore is true', () => {
 			// Arrange
 			const now = moment()
-			const future = moment().add(13, 'weeks')
+			const future = moment().add(19, 'weeks')
 			const appointments = [
 				{
 					date: now,
