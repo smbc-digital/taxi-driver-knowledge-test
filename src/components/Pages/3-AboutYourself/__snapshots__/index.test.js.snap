@@ -10,7 +10,7 @@ Array [
       Tell us about yourself
     </h2>
     <label
-      className=""
+      className={undefined}
       htmlFor="firstName"
     >
       First name
@@ -31,7 +31,7 @@ Array [
       value="Sarah"
     />
     <label
-      className=""
+      className={undefined}
       htmlFor="lastName"
     >
       Last name
@@ -52,7 +52,7 @@ Array [
       value="Logan"
     />
     <label
-      className=""
+      className={undefined}
       htmlFor="phoneNumber"
     >
       Phone number
@@ -73,7 +73,7 @@ Array [
       value="Value"
     />
     <label
-      className=""
+      className={undefined}
       htmlFor="emailAddress"
     >
       Email address
@@ -100,7 +100,7 @@ Array [
       Enter your address
     </h3>
     <label
-      className=""
+      className={undefined}
       htmlFor="addressLine1"
     >
       Address line 1
@@ -127,6 +127,7 @@ Array [
       Address line 2
     </h3>
     <p
+      aria-hidden={true}
       className="optional"
     >
       (optional)
@@ -153,7 +154,7 @@ Array [
       value=""
     />
     <label
-      className=""
+      className={undefined}
       htmlFor="town"
     >
       Town
@@ -174,7 +175,7 @@ Array [
       value=""
     />
     <label
-      className=""
+      className={undefined}
       htmlFor="postcode"
     >
       Postcode
