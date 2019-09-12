@@ -12,7 +12,6 @@ Array [
     <fieldset>
       <div
         className="input-radio-container"
-        role="radiogroup"
       >
         <input
           checked={false}
@@ -31,7 +30,6 @@ Array [
       </div>
       <div
         className="input-radio-container"
-        role="radiogroup"
       >
         <input
           checked={true}

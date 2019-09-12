@@ -9,9 +9,13 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     Which taxi driver knowledge test do you want to take?
   </h2>
   <fieldset>
+    <legend
+      className="sr-only"
+    >
+      Which taxi driver knowledge test do you want to take?
+    </legend>
     <div
       className="input-radio-container"
-      role="radiogroup"
     >
       <input
         checked={true}
@@ -30,7 +34,6 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     </div>
     <div
       className="input-radio-container"
-      role="radiogroup"
     >
       <input
         checked={false}
@@ -49,7 +52,6 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     </div>
     <div
       className="input-radio-container"
-      role="radiogroup"
     >
       <input
         checked={false}
@@ -68,7 +70,6 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
     </div>
     <div
       className="input-radio-container"
-      role="radiogroup"
     >
       <input
         checked={false}
