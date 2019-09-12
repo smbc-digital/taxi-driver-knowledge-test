@@ -161,8 +161,11 @@ describe('PaymentSummary', () => {
 					isValid: true
 				}
 			}
+			const history = {
+				push: jest.fn()
+			}
 
-			const tree = renderer.create(<PaymentSummary context={context} />).toJSON()
+			const tree = renderer.create(<PaymentSummary context={context} history={history} />).toJSON()
 
 			expect(tree).toMatchSnapshot()
 		})

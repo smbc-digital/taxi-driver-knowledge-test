@@ -20,7 +20,7 @@ export const AboutYourself = ({ context, history }) => {
                     label='First name'
                     id='firstName'
                     type='text'
-                    maxLength='35'
+                    maxLength={35}
                     optional={false}
                     value={context.firstName.value}
                     onChange={context.onChange}
@@ -29,7 +29,7 @@ export const AboutYourself = ({ context, history }) => {
                     label='Last name'
                     id='lastName'
                     type='text'
-                    maxLength='60'
+                    maxLength={60}
                     optional={false}
                     value={context.lastName.value}
                     onChange={context.onChange}

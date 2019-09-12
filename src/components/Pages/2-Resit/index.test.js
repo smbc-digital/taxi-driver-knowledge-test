@@ -15,7 +15,8 @@ describe('Resit', () => {
             previousTestDate: {
                 value: '',
                 isValid: false
-            }
+            },
+            onChange: jest.fn()
         }
 
         const history = { push: jest.fn() }
@@ -39,7 +40,8 @@ describe('Resit', () => {
             previousTestDate: {
                 value: moment(),
                 isValid: true
-            }
+            },
+            onChange: jest.fn()
         }
 
         const history = { push: jest.fn() }
@@ -64,12 +66,16 @@ describe('Resit', () => {
                 previousTestDate: {
                     value: '',
                     isValid: false
-                }
+                },
+                onChange: jest.fn()
+            }
+            const history = {
+                push: jest.fn()
             }
 		
 			// Act
 			const tree = renderer
-			.create(<Resit context={data} />)
+			.create(<Resit context={data} history={history} />)
 			.toJSON()
 		
 			// Assert

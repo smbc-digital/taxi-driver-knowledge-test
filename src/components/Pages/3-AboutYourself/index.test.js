@@ -24,10 +24,10 @@ describe('AboutYourself', () => {
                 isValid: true
             },
             address: {
-                value:'Value',
+                value: {},
                 isValid: true
             },
-            onChange: null
+            onChange: jest.fn()
         }
 
         const history = { push: jest.fn() }
@@ -61,15 +61,18 @@ describe('AboutYourself', () => {
                     isValid: true
                 },
                 address: {
-                    value:'Value',
+                    value: {},
                     isValid: true
                 },
-                onChange: null
+                onChange: jest.fn()
+            }
+            const history = {
+                push: jest.fn()
             }
 
             // Act
 			const tree = renderer
-			.create(<AboutYourself context={data} />)
+			.create(<AboutYourself context={data} history={history} />)
 			.toJSON()
 		
 			// Assert

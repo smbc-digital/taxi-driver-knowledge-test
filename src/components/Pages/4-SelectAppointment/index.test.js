@@ -25,7 +25,8 @@ describe('SelectAppointment', () => {
 				value: moment('25/04/2019', 'DD/MM/YYYY'),
 				isValid: true
 			},
-			setBookingId: jest.fn()
+			setBookingId: jest.fn(),
+			onChange: jest.fn()
 		}
 
 		const now = moment().format('DD/MM/YYYY')
@@ -86,7 +87,8 @@ describe('SelectAppointment', () => {
 					date: now,
 					times: []
 				}],
-			setBookingId: jest.fn()
+			setBookingId: jest.fn(),
+			onChange: jest.fn()
 		}
 
 
@@ -136,7 +138,8 @@ describe('SelectAppointment', () => {
 					value: moment('25/04/2019', 'DD/MM/YYYY'),
 					isValid: true
 				},
-				setBookingId: jest.fn()
+				setBookingId: jest.fn(),
+				onChange: jest.fn()
 			}
 
 			const history = { push: jest.fn() }
@@ -166,7 +169,8 @@ describe('SelectAppointment', () => {
 					value: moment('25/04/2019', 'DD/MM/YYYY'),
 					isValid: true
 				},
-				setBookingId: jest.fn()
+				setBookingId: jest.fn(),
+				onChange: jest.fn()
 			}
 
 			const event = { preventDefault: jest.fn() }
@@ -195,10 +199,14 @@ describe('SelectAppointment', () => {
 					value: '',
 					isValid: false
 				},
-				setBookingId: jest.fn()
+				setBookingId: jest.fn(),
+				onChange: jest.fn()
+			}
+			const history = {
+				push: jest.fn()
 			}
 
-			const tree = renderer.create(<SelectAppointment context={data} />).toJSON()
+			const tree = renderer.create(<SelectAppointment context={data} history={history} />).toJSON()
 
 			expect(tree).toMatchSnapshot()
 		})

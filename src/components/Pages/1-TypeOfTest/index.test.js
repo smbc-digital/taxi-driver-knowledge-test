@@ -10,7 +10,8 @@ describe('TypeOfTest', () => {
             testType: {
                 value: 'Private hire',
                 isValid: true
-            }
+            },
+            onChange: jest.fn()
         }
 
         const history = { push: jest.fn() }
@@ -29,12 +30,16 @@ describe('TypeOfTest', () => {
                 testType: {
                     value: 'Private Hire',
                     isValid: true
-                }
-			}
+                },
+                onChange: jest.fn()
+            }
+            const history = {
+                push: jest.fn()
+            }
 
 			// Act
 			const tree = renderer
-			.create(<TypeOfTest context={data} />)
+			.create(<TypeOfTest context={data} history={history} />)
 			.toJSON()
 
 			// Assert
