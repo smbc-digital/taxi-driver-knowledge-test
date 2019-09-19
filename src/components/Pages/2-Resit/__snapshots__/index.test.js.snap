@@ -10,6 +10,11 @@ Array [
       Is this the first time you'll be taking the taxi driver knowledge test?
     </h2>
     <fieldset>
+      <legend
+        className="sr-only"
+      >
+        Is this the first time you'll be taking the taxi driver knowledge test?
+      </legend>
       <div
         className="input-radio-container"
       >

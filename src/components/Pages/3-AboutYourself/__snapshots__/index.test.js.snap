@@ -10,7 +10,6 @@ Array [
       Tell us about yourself
     </h2>
     <label
-      className={undefined}
       htmlFor="firstName"
     >
       First name
@@ -31,7 +30,6 @@ Array [
       value="Sarah"
     />
     <label
-      className={undefined}
       htmlFor="lastName"
     >
       Last name
@@ -52,7 +50,6 @@ Array [
       value="Logan"
     />
     <label
-      className={undefined}
       htmlFor="phoneNumber"
     >
       Phone number
@@ -73,7 +70,6 @@ Array [
       value="Value"
     />
     <label
-      className={undefined}
       htmlFor="emailAddress"
     >
       Email address
@@ -95,7 +91,6 @@ Array [
     />
     <h3
       aria-hidden={true}
-      className={false}
     >
       Enter your postcode
     </h3>
