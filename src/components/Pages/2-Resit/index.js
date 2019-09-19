@@ -14,9 +14,11 @@ export const Resit = ({ context, history })  => {
 	return (
 		<Fragment>
 			<form onSubmit={onSubmit}>
-				<h1>{context.formHeader}</h1>
-				<h2>Is this the first time you&#39;ll be taking the taxi driver knowledge test?</h2>
+				<h1>{context.formHeader}</h1>				
 				<RadioInputsContainer
+					displayHeading={true}
+					enableH2={true}
+					header='Is this the first time you&#39;ll be taking the taxi driver knowledge test?'
 					onChange={context.onChange}
 					options={[{
 						label: 'Yes',
