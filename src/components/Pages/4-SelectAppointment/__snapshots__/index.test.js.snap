@@ -35,7 +35,7 @@ Array [
       onClick={[Function]}
     >
        
-      <i
+      <span
         className="fa fa-plus-square fa-lg"
       />
       Show more dates
