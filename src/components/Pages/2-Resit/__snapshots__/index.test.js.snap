@@ -9,7 +9,10 @@ Array [
     <h2>
       Is this the first time you'll be taking the taxi driver knowledge test?
     </h2>
-    <fieldset>
+    <fieldset
+      aria-label="Is this the first time you'll be taking the taxi driver knowledge test?"
+      role="radiogroup"
+    >
       <legend
         className="sr-only"
       >

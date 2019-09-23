@@ -8,7 +8,10 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
   <h2>
     Which taxi driver knowledge test do you want to take?
   </h2>
-  <fieldset>
+  <fieldset
+    aria-label="Which taxi driver knowledge test do you want to take?"
+    role="radiogroup"
+  >
     <legend
       className="sr-only"
     >

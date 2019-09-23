@@ -29,8 +29,8 @@ export class Success extends Component {
 				<section className="body-container">
 					<p>
 						Your appointment to take the {testType} taxi driver knowledge test is at{' '}
-						<b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('h:mma')}</b> on{' '}
-						<b>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</b>{' '}
+						<strong>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('h:mma')}</strong> on{' '}
+						<strong>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</strong>{' '}
 					</p>
 					<p>
 						Your payment reference number is <strong>{receiptNumber}</strong>.

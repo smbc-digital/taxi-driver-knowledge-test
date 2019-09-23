@@ -45,7 +45,7 @@ render() {
             <h2>Your booking summary</h2>
             <p>Your booking to take the {testType.value} taxi driver knowledge test is at {moment(testDate.value).format('h:mma')} on {moment(testDate.value).format('dddd D MMMM')}.</p>
             <p>You&#39;ll now be taken to our online system to make the payment.</p>
-            <p>The cost is <b>£70</b>.</p>
+            <p>The cost is <strong>£70</strong>.</p>
             {displayRecaptcha && (
 						<div className="recaptcha">
 							<ReCAPTCHA
