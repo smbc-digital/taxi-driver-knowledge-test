@@ -22,9 +22,9 @@ exports[`PaymentSummary snapshot renders correctly 1`] = `
   </p>
   <p>
     The cost is 
-    <b>
+    <strong>
       £70
-    </b>
+    </strong>
     .
   </p>
   <button
