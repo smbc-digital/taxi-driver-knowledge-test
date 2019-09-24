@@ -49,7 +49,7 @@ export class Success extends Component {
 					<p>
 						<strong>What you need to bring to your test</strong>
 					</p>
-						<ul>
+						<ul className="indented-list">
 							<li>a recent passport sized photograph</li>
 							<li>EEA/UK photocard driving licence showing your current name and address</li>
 							<li>utility bill or bank statement, issued within the last 3 months, showing your current name and address</li>
