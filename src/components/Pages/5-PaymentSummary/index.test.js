@@ -29,6 +29,10 @@ describe('PaymentSummary', () => {
 			emailAddress: {
 				value: 'test@stockport.gov.uk',
 				isValid: true
+			},
+			address: {
+				value: 'Test Address',
+				isValid: true
 			}
 		}
 		const history = { push: jest.fn() }
@@ -58,6 +62,10 @@ describe('PaymentSummary', () => {
 			},
 			emailAddress: {
 				value: 'test@stockport.gov.uk',
+				isValid: true
+			},
+			address: {
+				value: 'Test Address',
 				isValid: true
 			}
 		}
