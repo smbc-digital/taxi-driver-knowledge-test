@@ -33,7 +33,7 @@ export class Success extends Component {
 						<strong>{moment(testDate, 'YYYY-MM-DD[T]HH:mm:ss').format('dddd D MMMM YYYY')}</strong>{' '}
 					</p>
 					<p>
-						Your payment reference number is <strong>{receiptNumber}</strong>.
+						Your reference number is <strong>{receiptNumber}</strong>.
 					</p>
 					<p>We&#39;ve sent you a confirmation email including this information.</p>
 
