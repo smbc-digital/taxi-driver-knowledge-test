@@ -15,19 +15,19 @@ exports[`SomethingWentWrong snapshot should render correctly 1`] = `
         />
       </div>
       <h1>
-         We're sorry, the payment was unsuccessful
+         We're sorry, there was a problem with the form
       </h1>
     </div>
     <p
       className="no-margin-bottom"
     >
-      Something went wrong. Please try again if you want to continue with the order.
+      No money has been taken from your account, please try again if you want to continue.
     </p>
     <a
       className="button-primary"
       href="test"
     >
-      Continue with the order
+      Go back to try the payment again
     </a>
     <a
       className="button-secondary anchor-as-block"
