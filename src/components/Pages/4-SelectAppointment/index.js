@@ -92,7 +92,7 @@ export class SelectAppointment extends Component {
 					<h1>{formHeader}</h1>
 					<AlertForm
 						level="information"
-						content="The test usually takes place on a Wednesday. There may be times when we run the test on other days, these will be displayed below."
+						content="The test usually takes place on a Monday. There may be times when we run the test on other days, these will be displayed below."
 					/>
 					<SelectableButtonList
 						heading="Select an appointment"
