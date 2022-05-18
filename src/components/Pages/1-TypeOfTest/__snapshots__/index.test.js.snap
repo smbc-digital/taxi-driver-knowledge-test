@@ -71,24 +71,6 @@ exports[`TypeOfTest snapshot should render correctly 1`] = `
         Executive hire
       </label>
     </div>
-    <div
-      className="input-radio-container"
-    >
-      <input
-        checked={false}
-        disabled={undefined}
-        id="assisted"
-        name="testType"
-        onChange={[Function]}
-        type="radio"
-        value="Assisted Transport"
-      />
-      <label
-        htmlFor="assisted"
-      >
-        Assisted transport
-      </label>
-    </div>
   </fieldset>
   <button
     className="button-primary"
