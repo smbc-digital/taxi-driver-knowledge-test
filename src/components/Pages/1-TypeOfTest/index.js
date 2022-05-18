@@ -35,12 +35,6 @@ export const TypeOfTest = props => {
 						id: 'executive',
 						name: 'testType',
 						value: 'Executive Hire'
-					},
-					{
-						label: 'Assisted transport',
-						id: 'assisted',
-						name: 'testType',
-						value: 'Assisted Transport'
 					}]}
 					value={context.testType.value}
 					displayHeading={true}
